@@ -1,0 +1,9 @@
+copyright_text = {find:ci:"copyright" .*}
+
+alias python_comment ="#"
+alias c_comment = "/*" / [*]+ / "//"
+alias lua_comment = "--"
+
+alias comment = lua_comment / c_comment / python_comment
+
+copyright = { [ ]* comment [ ]* copyright_text }

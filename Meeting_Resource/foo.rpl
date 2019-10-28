@@ -1,0 +1,20 @@
+
+
+-- This file works fine when NOT USING -w on the command line.
+
+-- But, we must use -w on the command line so that we can find all of the C/Java
+-- comments even if they span multiple lines.
+
+license_text = {find:ci:"license" .*}
+
+-- lua_license = {"--" [ ]* license_text}
+-- c_license = {"/"? "*"+ [ ]* license_text}
+
+
+alias lua_comment = "--"
+alias c_comment = "/*" / [*]+ / "//"
+alias python_comment = "#"
+
+alias comment = lua_comment / c_comment / python_comment
+license = { [ ]* comment [ ]* license_text }
+

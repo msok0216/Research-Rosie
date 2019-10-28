@@ -1,0 +1,9 @@
+author_text = {find:ci:"author" .*}
+
+alias python_comment ="#"
+alias c_comment = "/*" / [*]+ / "//"
+alias lua_comment = "--"
+
+alias comment = lua_comment / c_comment / python_comment
+
+author = { [ ]* comment [ ]* author_text }

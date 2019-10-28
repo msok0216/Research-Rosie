@@ -1,0 +1,29 @@
+
+
+-- Use this pattern with -w on the command line to read the whole file!
+
+--license_text = { find:ci:"license" [^\n]* }
+
+-- Need to look for EITHER "license" OR a newline
+license_text = {ci:"license" [^\n]*}
+license_search = { find:{ license_text / "\n"} }
+
+alias lua_comment_start = "--"
+alias python_comment_start = "#"
+alias c_line_comment_start = "//"
+
+alias line_comment_end = "\n"
+
+alias c_block_comment_start = "/*" 
+alias c_block_comment_end = "*/" 
+alias c_block_comment = { c_block_comment_start find:c_block_comment_end }
+
+alias lua_license = { lua_comment_start [ ]* license_text }
+alias python_license = { python_comment_start [ ]* license_text }
+alias c_license = { c_line_comment_start [ ]* license_text } /
+		  { c_block_comment_start [ ]* license_text find:c_block_comment_end }
+
+license = lua_license / c_license / python_license
+
+
+

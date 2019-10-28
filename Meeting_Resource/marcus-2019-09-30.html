@@ -1,0 +1,1720 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- Created by htmlize-1.53 in css mode. -->
+<html>
+  <head>
+    <title>*shell*</title>
+    <style type="text/css">
+    <!--
+      body {
+        color: #000000;
+        background-color: #ffffff;
+      }
+      .bold {
+        /* bold */
+        font-weight: bold;
+      }
+      .comint-highlight-input {
+        /* comint-highlight-input */
+        font-weight: bold;
+      }
+      .comint-highlight-prompt {
+        /* comint-highlight-prompt */
+        color: #0000cd;
+      }
+      .comint-highlight-prompt {
+        /* comint-highlight-prompt */
+        color: #0000cd;
+      }
+      .comment {
+        /* font-lock-comment-face */
+        color: #888088;
+        font-style: italic;
+      }
+      .custom {
+        /* (foreground-color . "magenta3") */
+        color: #cd00cd;
+      }
+      .custom-1 {
+        /* (foreground-color . "cyan3") */
+        color: #00cdcd;
+      }
+      .custom-2 {
+        /* (foreground-color . "red3") */
+        color: #cd0000;
+      }
+      .custom-3 {
+        /* (foreground-color . "green3") */
+        color: #00cd00;
+      }
+
+      a {
+        color: inherit;
+        background-color: inherit;
+        font: inherit;
+        text-decoration: inherit;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    -->
+    </style>
+  </head>
+  <body>
+    <pre>
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl grep lic ~/Projects/rosie/src/lua/ast.lua </span>
+-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span>
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span>
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match lic ~/Projects/rosie/src/lua/ast.lua </span>
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match lic ~/Projects/rosie/src/lua/ast.lua </span>
+-- <span class="bold">LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)</span>
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match -o jsonpp lic ~/Projects/rosie/src/lua/ast.lua </span>
+{"subs": 
+   [{"s": 4, 
+     "type": "find.*", 
+     "data": "LICENSE", 
+     "e": 11}, 
+    {"s": 11, 
+     "type": "license_text", 
+     "data": ": MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "e": 75}], 
+ "s": 1, 
+ "type": "lic", 
+ "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "e": 75}
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match -o jsonpp lic ~/Projects/rosie/src/lua/ast.lua </span>
+{"subs": 
+   [{"subs": 
+       [{"s": 4, 
+         "data": "LICENSE", 
+         "e": 11, 
+         "type": "find.*"}], 
+     "s": 3, 
+     "data": " LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "e": 75, 
+     "type": "license_text"}], 
+ "s": 1, 
+ "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "e": 75, 
+ "type": "lic"}
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match -o jsonpp lic ~/Projects/rosie/src/lua/ast.lua </span>
+{"s": 1, 
+ "type": "lic", 
+ "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "e": 75, 
+ "subs": 
+   [{"s": 3, 
+     "type": "license_text", 
+     "data": " LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "e": 75, 
+     "subs": 
+       [{"s": 4, 
+         "type": "find.*", 
+         "data": "LICENSE", 
+         "e": 11}]}]}
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match lic ~/Projects/rosie/src/lua/ast.lua </span>
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match lic ~/Projects/rosie/src/lua/ast.lua </span>
+Compile error
+        [compiler]: undefined identifier: lic
+        in user input :1:1: lic
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match license ~/Projects/rosie/src/lua/ast.lua </span>
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match -o jsonpp license ~/Projects/rosie/src/lua/ast.lua </span>
+{"subs": 
+   [{"subs": 
+       [{"type": "find.*", 
+         "data": "LICENSE", 
+         "s": 4, 
+         "e": 11}], 
+     "type": "license_text", 
+     "data": " LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "s": 3, 
+     "e": 75}], 
+ "type": "*", 
+ "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "s": 1, 
+ "e": 75}
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match license ~/Projects/rosie/src/lua/ast.lua </span>
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span>
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span>
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match -o jsonpp license ~/Projects/rosie/src/lua/ast.lua </span>
+{"s": 1, 
+ "subs": 
+   [{"s": 3, 
+     "subs": 
+       [{"s": 4, 
+         "type": "find.*", 
+         "data": "LICENSE", 
+         "e": 11}], 
+     "type": "license_text", 
+     "data": " LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "e": 75}], 
+ "type": "license", 
+ "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "e": 75}
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match -o jsonpp license ~/Projects/rosie/src/lua/ast.lua </span>
+{"subs": 
+   [{"subs": 
+       [{"e": 11, 
+         "type": "find.*", 
+         "data": "LICENSE", 
+         "s": 4}], 
+     "type": "license_text", 
+     "data": "LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "e": 75, 
+     "s": 4}], 
+ "type": "license", 
+ "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "e": 75, 
+ "s": 1}
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match -o jsonpp license ~/Projects/rosie/src/lua/*.lua</span>
+/Users/jjennings/Projects/rosie/src/lua/ast.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 4, 
+     "subs": 
+       [{"s": 4, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 11}], 
+     "data": "LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 75}], 
+ "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 75}
+/Users/jjennings/Projects/rosie/src/lua/boot.lua:
+/Users/jjennings/Projects/rosie/src/lua/builtins.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 4, 
+     "subs": 
+       [{"s": 4, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 11}], 
+     "data": "LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 75}], 
+ "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 75}
+/Users/jjennings/Projects/rosie/src/lua/cli-common.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 4, 
+     "subs": 
+       [{"s": 4, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 11}], 
+     "data": "LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 75}], 
+ "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 75}
+/Users/jjennings/Projects/rosie/src/lua/cli-match.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 4, 
+     "subs": 
+       [{"s": 4, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 11}], 
+     "data": "LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 75}], 
+ "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 75}
+/Users/jjennings/Projects/rosie/src/lua/cli-parser.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 4, 
+     "subs": 
+       [{"s": 4, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 11}], 
+     "data": "LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 75}], 
+ "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 75}
+/Users/jjennings/Projects/rosie/src/lua/cli.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 3, 
+     "subs": 
+       [{"s": 6, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 13}], 
+     "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 77}], 
+ "data": "---- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 77}
+/Users/jjennings/Projects/rosie/src/lua/color.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 3, 
+     "subs": 
+       [{"s": 6, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 13}], 
+     "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 77}], 
+ "data": "---- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 77}
+/Users/jjennings/Projects/rosie/src/lua/common.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 3, 
+     "subs": 
+       [{"s": 6, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 13}], 
+     "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 77}], 
+ "data": "---- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 77}
+/Users/jjennings/Projects/rosie/src/lua/compile.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 4, 
+     "subs": 
+       [{"s": 4, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 11}], 
+     "data": "LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 75}], 
+ "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 75}
+/Users/jjennings/Projects/rosie/src/lua/engine_module.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 3, 
+     "subs": 
+       [{"s": 6, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 13}], 
+     "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 77}], 
+ "data": "---- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 77}
+/Users/jjennings/Projects/rosie/src/lua/environment.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 4, 
+     "subs": 
+       [{"s": 4, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 11}], 
+     "data": "LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 75}], 
+ "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 75}
+/Users/jjennings/Projects/rosie/src/lua/expand.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 4, 
+     "subs": 
+       [{"s": 4, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 11}], 
+     "data": "LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 75}], 
+ "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 75}
+/Users/jjennings/Projects/rosie/src/lua/expr.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 4, 
+     "subs": 
+       [{"s": 4, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 11}], 
+     "data": "LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 75}], 
+ "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 75}
+/Users/jjennings/Projects/rosie/src/lua/infix.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 4, 
+     "subs": 
+       [{"s": 4, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 11}], 
+     "data": "LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 75}], 
+ "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 75}
+/Users/jjennings/Projects/rosie/src/lua/init.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 3, 
+     "subs": 
+       [{"s": 6, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 13}], 
+     "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 77}], 
+ "data": "---- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 77}
+/Users/jjennings/Projects/rosie/src/lua/loadpkg.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 4, 
+     "subs": 
+       [{"s": 4, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 11}], 
+     "data": "LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 75}], 
+ "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 75}
+/Users/jjennings/Projects/rosie/src/lua/parse.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 4, 
+     "subs": 
+       [{"s": 4, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 11}], 
+     "data": "LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 75}], 
+ "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 75}
+/Users/jjennings/Projects/rosie/src/lua/parse_core.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 3, 
+     "subs": 
+       [{"s": 6, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 13}], 
+     "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 77}], 
+ "data": "---- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 77}
+/Users/jjennings/Projects/rosie/src/lua/rcfile.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 4, 
+     "subs": 
+       [{"s": 4, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 11}], 
+     "data": "LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 75}], 
+ "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 75}
+/Users/jjennings/Projects/rosie/src/lua/repl.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 3, 
+     "subs": 
+       [{"s": 6, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 13}], 
+     "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 77}], 
+ "data": "---- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 77}
+/Users/jjennings/Projects/rosie/src/lua/trace.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 4, 
+     "subs": 
+       [{"s": 4, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 11}], 
+     "data": "LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 75}], 
+ "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 75}
+/Users/jjennings/Projects/rosie/src/lua/ui.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 4, 
+     "subs": 
+       [{"s": 4, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 11}], 
+     "data": "LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 75}], 
+ "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 75}
+/Users/jjennings/Projects/rosie/src/lua/unittest.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 4, 
+     "subs": 
+       [{"s": 4, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 11}], 
+     "data": "LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 75}], 
+ "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 75}
+/Users/jjennings/Projects/rosie/src/lua/ustring.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 4, 
+     "subs": 
+       [{"s": 4, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 11}], 
+     "data": "LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 75}], 
+ "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 75}
+/Users/jjennings/Projects/rosie/src/lua/util.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 3, 
+     "subs": 
+       [{"s": 6, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 13}], 
+     "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 77}], 
+ "data": "---- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 77}
+/Users/jjennings/Projects/rosie/src/lua/violation.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 4, 
+     "subs": 
+       [{"s": 4, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 11}], 
+     "data": "LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 75}], 
+ "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 75}
+/Users/jjennings/Projects/rosie/src/lua/writer.lua:
+{"s": 1, 
+ "subs": 
+   [{"s": 3, 
+     "subs": 
+       [{"s": 6, 
+         "data": "LICENSE", 
+         "type": "find.*", 
+         "e": 13}], 
+     "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "e": 77}], 
+ "data": "---- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "e": 77}
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match license ~/Projects/rosie/src/lua/*.lua</span>
+/Users/jjennings/Projects/rosie/src/lua/ast.lua:
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/boot.lua:
+/Users/jjennings/Projects/rosie/src/lua/builtins.lua:
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/cli-common.lua:
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/cli-match.lua:
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/cli-parser.lua:
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/cli.lua:
+---- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/color.lua:
+---- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/common.lua:
+---- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/compile.lua:
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/engine_module.lua:
+---- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/environment.lua:
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/expand.lua:
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/expr.lua:
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/infix.lua:
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/init.lua:
+---- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/loadpkg.lua:
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/parse.lua:
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/parse_core.lua:
+---- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/rcfile.lua:
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/repl.lua:
+---- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/trace.lua:
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/ui.lua:
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/unittest.lua:
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/ustring.lua:
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/util.lua:
+---- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/violation.lua:
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/writer.lua:
+---- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match license ~/Projects/rosie/src/rpeg/compiler/*.[ch]</span>
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/foo.c:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/ktable-macros.h:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpcap.c:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpcap.h:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpcode.c:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpcode.h:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpprint.c:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpprint.h:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lptree.c:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lptree.h:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lptypes.h:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/rbuf.c:
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match c_license ~/Projects/rosie/src/rpeg/compiler/*.[ch]</span>
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/foo.c:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/ktable-macros.h:
+/*  <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)  */
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpcap.c:
+/*  <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)  */
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpcap.h:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpcode.c:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpcode.h:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpprint.c:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpprint.h:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lptree.c:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lptree.h:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lptypes.h:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/rbuf.c:
+/*  <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)  */
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match c_license ~/Projects/rosie/src/rpeg/compiler/*.[ch]</span>
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/foo.c:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/ktable-macros.h:
+/*  <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)  */
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpcap.c:
+/*  <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)  */
+** Copyright 2007, Lua.org &amp; PUC-Rio  (see 'lpeg.html' for <span class="bold">license</span>)
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpcap.h:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpcode.c:
+** Copyright 2007, Lua.org &amp; PUC-Rio  (see 'lpeg.html' for <span class="bold">license</span>)
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpcode.h:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpprint.c:
+** Copyright 2007, Lua.org &amp; PUC-Rio  (see 'lpeg.html' for <span class="bold">license</span>)
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpprint.h:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lptree.c:
+** Portions Copyright 2013, Lua.org &amp; PUC-Rio  (see 'lpeg.html' for <span class="bold">license</span>)
+** Portions Copyright 2016, 2017, 2018, Jamie A. Jennings  (MIT <span class="bold">license</span>, like lpeg)
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lptree.h:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lptypes.h:
+** Copyright 2007-2015, Lua.org &amp; PUC-Rio  (see 'lpeg.html' for <span class="bold">license</span>)
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/rbuf.c:
+/*  <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)  */
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match c_license ~/Projects/rosie/src/rpeg/compiler/*.[ch]</span>
+Compile error
+        [compiler]: undefined identifier: c_license
+        in user input :1:1: c_license
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match license ~/Projects/rosie/src/rpeg/compiler/*.[ch]</span>
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/foo.c:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/ktable-macros.h:
+<span class="bold">/*</span>  <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)  */
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpcap.c:
+<span class="bold">/*</span>  <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)  */
+<span class="bold">**</span> Copyright 2007, Lua.org &amp; PUC-Rio  (see 'lpeg.html' for <span class="bold">license</span>)
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpcap.h:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpcode.c:
+<span class="bold">**</span> Copyright 2007, Lua.org &amp; PUC-Rio  (see 'lpeg.html' for <span class="bold">license</span>)
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpcode.h:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpprint.c:
+<span class="bold">**</span> Copyright 2007, Lua.org &amp; PUC-Rio  (see 'lpeg.html' for <span class="bold">license</span>)
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpprint.h:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lptree.c:
+<span class="bold">**</span> Portions Copyright 2013, Lua.org &amp; PUC-Rio  (see 'lpeg.html' for <span class="bold">license</span>)
+<span class="bold">**</span> Portions Copyright 2016, 2017, 2018, Jamie A. Jennings  (MIT <span class="bold">license</span>, like lpeg)
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lptree.h:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lptypes.h:
+<span class="bold">**</span> Copyright 2007-2015, Lua.org &amp; PUC-Rio  (see 'lpeg.html' for <span class="bold">license</span>)
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/rbuf.c:
+<span class="bold">/*</span>  <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)  */
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match license ~/Projects/rosie/src/lua/*.lua</span>
+/Users/jjennings/Projects/rosie/src/lua/ast.lua:
+<span class="bold">--</span> <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/boot.lua:
+/Users/jjennings/Projects/rosie/src/lua/builtins.lua:
+<span class="bold">--</span> <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/cli-common.lua:
+<span class="bold">--</span> <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/cli-match.lua:
+<span class="bold">--</span> <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/cli-parser.lua:
+<span class="bold">--</span> <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/cli.lua:
+<span class="bold">--</span>-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/color.lua:
+<span class="bold">--</span>-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/common.lua:
+<span class="bold">--</span>-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/compile.lua:
+<span class="bold">--</span> <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/engine_module.lua:
+<span class="bold">--</span>-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/environment.lua:
+<span class="bold">--</span> <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/expand.lua:
+<span class="bold">--</span> <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/expr.lua:
+<span class="bold">--</span> <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/infix.lua:
+<span class="bold">--</span> <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/init.lua:
+<span class="bold">--</span>-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/loadpkg.lua:
+<span class="bold">--</span> <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/parse.lua:
+<span class="bold">--</span> <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/parse_core.lua:
+<span class="bold">--</span>-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/rcfile.lua:
+<span class="bold">--</span> <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/repl.lua:
+<span class="bold">--</span>-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/trace.lua:
+<span class="bold">--</span> <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/ui.lua:
+<span class="bold">--</span> <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/unittest.lua:
+<span class="bold">--</span> <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/ustring.lua:
+<span class="bold">--</span> <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/util.lua:
+<span class="bold">--</span>-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/violation.lua:
+<span class="bold">--</span> <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/src/lua/writer.lua:
+<span class="bold">--</span>-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">find ~/Projects/ -name *.py</span>
+/Users/jjennings/Projects//rosie/extra/examples/sloc.py
+/Users/jjennings/Projects//rosie/extra/examples/ipv4.py
+/Users/jjennings/Projects//rosie/submodules/argparse/docsrc/conf.py
+/Users/jjennings/Projects//SCRATCH/onorio/rosie/extra/examples/generic_sloc.py
+/Users/jjennings/Projects//SCRATCH/onorio/rosie/submodules/argparse/docsrc/conf.py
+/Users/jjennings/Projects//SCRATCH/onorio/rosie/src/librosie/python/test.py
+/Users/jjennings/Projects//SCRATCH/onorio/rosie/src/librosie/python/pyrosie/internal.py
+/Users/jjennings/Projects//SCRATCH/onorio/rosie/src/librosie/python/pyrosie/adapt23.py
+/Users/jjennings/Projects//SCRATCH/onorio/rosie/src/librosie/python/pyrosie/__init__.py
+/Users/jjennings/Projects//SCRATCH/onorio/rosie/src/librosie/python/pyrosie/rosie.py
+/Users/jjennings/Projects//SCRATCH/onorio/rosie/src/librosie/python/rosie.py
+/Users/jjennings/Projects//SCRATCH/onorio/rosie/src/librosie/example.py
+/Users/jjennings/Projects//community/python/internal.py
+/Users/jjennings/Projects//community/python/adapt23.py
+/Users/jjennings/Projects//community/python/testInternals.py
+/Users/jjennings/Projects//community/python/__init__.py
+/Users/jjennings/Projects//community/python/examplerosie.py
+/Users/jjennings/Projects//community/python/examplere.py
+/Users/jjennings/Projects//community/python/test.py
+/Users/jjennings/Projects//community/python/B.py
+/Users/jjennings/Projects//community/python/rosie.py
+/Users/jjennings/Projects//community/python/decode.py
+/Users/jjennings/Projects//RPL-research-fall-2018/rosie/extra/examples/generic_sloc.py
+/Users/jjennings/Projects//RPL-research-fall-2018/rosie/src/librosie/python/pyrosie/internal.py
+/Users/jjennings/Projects//RPL-research-fall-2018/rosie/src/librosie/python/pyrosie/adapt23.py
+/Users/jjennings/Projects//RPL-research-fall-2018/rosie/src/librosie/python/pyrosie/testInternals.py
+/Users/jjennings/Projects//RPL-research-fall-2018/rosie/src/librosie/python/pyrosie/__init__.py
+/Users/jjennings/Projects//RPL-research-fall-2018/rosie/src/librosie/python/pyrosie/examplerosie.py
+/Users/jjennings/Projects//RPL-research-fall-2018/rosie/src/librosie/python/pyrosie/examplere.py
+/Users/jjennings/Projects//RPL-research-fall-2018/rosie/src/librosie/python/pyrosie/test.py
+/Users/jjennings/Projects//RPL-research-fall-2018/rosie/src/librosie/python/pyrosie/rosie.py
+/Users/jjennings/Projects//RPL-research-fall-2018/rosie/src/librosie/example.py
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match license ~/Projects/rosie/extra/examples/*.py</span>
+/Users/jjennings/Projects/rosie/extra/examples/ipv4.py:
+/Users/jjennings/Projects/rosie/extra/examples/sloc.py:
+<span class="bold">#</span>  <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match -o jsonpp license ~/Projects/rosie/extra/examples/*.py</span>
+/Users/jjennings/Projects/rosie/extra/examples/ipv4.py:
+/Users/jjennings/Projects/rosie/extra/examples/sloc.py:
+{"data": "#  LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "type": "license", 
+ "s": 1, 
+ "e": 75, 
+ "subs": 
+   [{"data": "#", 
+     "type": "comment", 
+     "s": 1, 
+     "e": 2, 
+     "subs": 
+       [{"data": "#", 
+         "type": "python_comment", 
+         "s": 1, 
+         "e": 2}]}, 
+    {"data": "LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "type": "license_text", 
+     "s": 4, 
+     "e": 75, 
+     "subs": 
+       [{"data": "LICENSE", 
+         "type": "find.*", 
+         "s": 4, 
+         "e": 11}]}]}
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match -o jsonpp license ~/Projects/rosie/extra/examples/*.py</span>
+/Users/jjennings/Projects/rosie/extra/examples/ipv4.py:
+/Users/jjennings/Projects/rosie/extra/examples/sloc.py:
+{"type": "license", 
+ "s": 1, 
+ "data": "#  LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "subs": 
+   [{"type": "python_comment", 
+     "s": 1, 
+     "data": "#", 
+     "e": 2}, 
+    {"type": "license_text", 
+     "s": 4, 
+     "data": "LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "subs": 
+       [{"type": "find.*", 
+         "s": 4, 
+         "data": "LICENSE", 
+         "e": 11}], 
+     "e": 75}], 
+ "e": 75}
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match -o jsonpp license ~/Projects/rosie/extra/examples/*.py</span>
+/Users/jjennings/Projects/rosie/extra/examples/ipv4.py:
+/Users/jjennings/Projects/rosie/extra/examples/sloc.py:
+{"type": "license", 
+ "e": 75, 
+ "data": "#  LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+ "s": 1, 
+ "subs": 
+   [{"type": "license_text", 
+     "e": 75, 
+     "data": "LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)", 
+     "s": 4, 
+     "subs": 
+       [{"type": "find.*", 
+         "e": 11, 
+         "data": "LICENSE", 
+         "s": 4}]}]}
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match -o jsonpp license ~/Projects/rosie/extra/examples/*</span>
+/Users/jjennings/Projects/rosie/extra/examples/README.md:
+/Users/jjennings/Projects/rosie/extra/examples/anbmcndm.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/anbn.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/anbncn.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/anbncndn.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/backref.rpl:
+{"e": 75, 
+ "s": 1, 
+ "type": "license", 
+ "subs": 
+   [{"e": 75, 
+     "s": 4, 
+     "type": "license_text", 
+     "subs": 
+       [{"e": 11, 
+         "s": 4, 
+         "type": "find.*", 
+         "data": "LICENSE"}], 
+     "data": "LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)"}], 
+ "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)"}
+/Users/jjennings/Projects/rosie/extra/examples/distinct.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/dyck.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/html.rpl:
+{"e": 75, 
+ "s": 1, 
+ "type": "license", 
+ "subs": 
+   [{"e": 75, 
+     "s": 4, 
+     "type": "license_text", 
+     "subs": 
+       [{"e": 11, 
+         "s": 4, 
+         "type": "find.*", 
+         "data": "LICENSE"}], 
+     "data": "LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)"}], 
+ "data": "-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)"}
+/Users/jjennings/Projects/rosie/extra/examples/images: Is a directory
+/Users/jjennings/Projects/rosie/extra/examples/ipv4.py:
+/Users/jjennings/Projects/rosie/extra/examples/reverse.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/sloc.py:
+{"e": 75, 
+ "s": 1, 
+ "type": "license", 
+ "subs": 
+   [{"e": 75, 
+     "s": 4, 
+     "type": "license_text", 
+     "subs": 
+       [{"e": 11, 
+         "s": 4, 
+         "type": "find.*", 
+         "data": "LICENSE"}], 
+     "data": "LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)"}], 
+ "data": "#  LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)"}
+/Users/jjennings/Projects/rosie/extra/examples/sloc_C.sh:
+/Users/jjennings/Projects/rosie/extra/examples/sloc_lua.sh:
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match license ~/Projects/rosie/extra/examples/*</span>
+/Users/jjennings/Projects/rosie/extra/examples/README.md:
+/Users/jjennings/Projects/rosie/extra/examples/anbmcndm.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/anbn.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/anbncn.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/anbncndn.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/backref.rpl:
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/extra/examples/distinct.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/dyck.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/html.rpl:
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/extra/examples/images: Is a directory
+/Users/jjennings/Projects/rosie/extra/examples/ipv4.py:
+/Users/jjennings/Projects/rosie/extra/examples/reverse.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/sloc.py:
+#  <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/extra/examples/sloc_C.sh:
+/Users/jjennings/Projects/rosie/extra/examples/sloc_lua.sh:
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">ls ~/Projects/rosie/extra/examples/*</span>
+/Users/jjennings/Projects/rosie/extra/examples/README.md        /Users/jjennings/Projects/rosie/extra/examples/dyck.rpl
+/Users/jjennings/Projects/rosie/extra/examples/anbmcndm.rpl     /Users/jjennings/Projects/rosie/extra/examples/html.rpl
+/Users/jjennings/Projects/rosie/extra/examples/anbn.rpl         /Users/jjennings/Projects/rosie/extra/examples/ipv4.py
+/Users/jjennings/Projects/rosie/extra/examples/anbncn.rpl       /Users/jjennings/Projects/rosie/extra/examples/reverse.rpl
+/Users/jjennings/Projects/rosie/extra/examples/anbncndn.rpl     /Users/jjennings/Projects/rosie/extra/examples/sloc.py
+/Users/jjennings/Projects/rosie/extra/examples/backref.rpl      /Users/jjennings/Projects/rosie/extra/examples/sloc_C.sh
+/Users/jjennings/Projects/rosie/extra/examples/distinct.rpl     /Users/jjennings/Projects/rosie/extra/examples/sloc_lua.sh
+
+/Users/jjennings/Projects/rosie/extra/examples/images:
+p1.gif          readme-fig1.png readme-fig2.png readme-fig3.png readme-fig4.png readme-fig5.png
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">set</span>
+Apple_PubSub_Socket_Render=/private/tmp/com.apple.launchd.8wwFk7xow9/Render
+BASH=/bin/bash
+BASH_ARGC=()
+BASH_ARGV=()
+BASH_LINENO=()
+BASH_SOURCE=()
+BASH_VERSINFO=([0]="3" [1]="2" [2]="57" [3]="1" [4]="release" [5]="x86_64-apple-darwin18")
+BASH_VERSION='3.2.57(1)-release'
+COLUMNS=129
+DIRSTACK=()
+DISPLAY=Jamies-MacBook-Pro.local
+EUID=501
+GROUPS=()
+HISTFILE=/Users/jjennings/.bash_history
+HISTFILESIZE=2500
+HISTSIZE=2500
+HOME=/Users/jjennings
+HOSTNAME=Jamies-MacBook-Pro.local
+HOSTTYPE=x86_64
+IFS=$' \t\n'
+INSIDE_EMACS=26.1,comint
+LANG=en_US.UTF-8
+LINES=84
+LOGNAME=jjennings
+MACHTYPE=x86_64-apple-darwin18
+MAILCHECK=60
+OLDPWD=/Users/jjennings/Classes/333/jamie
+OPTERR=1
+OPTIND=1
+OSTYPE=darwin18
+PATH=/Users/jennings/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/opt/go/libexec/bin:/usr/local/texlive/2018/bin/x86_64-darwin
+PIPESTATUS=([0]="0")
+PPID=88118
+PS1='\w$ '
+PS2='&gt; '
+PS4='+ '
+PWD=/tmp
+SHELL=/bin/bash
+SHELLOPTS=braceexpand:hashall:histexpand:history:interactive-comments:monitor
+SHLVL=1
+SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.yB6VAyEAdK/Listeners
+TERM=dumb
+TERMCAP=
+TMPDIR=/var/folders/0h/fgmkj0657k96znmcrzt8fhh40000gn/T/
+UID=501
+USER=jjennings
+XPC_FLAGS=0x0
+XPC_SERVICE_NAME=org.gnu.Emacs.19912
+_=/Users/jjennings/Projects/rosie/extra/examples/sloc_lua.sh
+__CF_USER_TEXT_ENCODING=0x1F5:0x0:0x0
+noprompt () 
+{ 
+    if [ $INSIDE_EMACS ]; then
+        export PS1="$ ";
+    else
+        export PS1="\[\e[0;34m\]$\[\e[0m\] ";
+    fi
+}
+prompt () 
+{ 
+    if [ $INSIDE_EMACS ]; then
+        export PS1="\w$ ";
+    else
+        export PS1="\[\e[0;34m\]\w\$\[\e[0m\] ";
+    fi
+}
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span>
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match license ~/Projects/rosie/extra/examples/*</span>
+/Users/jjennings/Projects/rosie/extra/examples/README.md:
+/Users/jjennings/Projects/rosie/extra/examples/anbmcndm.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/anbn.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/anbncn.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/anbncndn.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/backref.rpl:
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/extra/examples/distinct.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/dyck.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/html.rpl:
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/extra/examples/images: Is a directory
+/Users/jjennings/Projects/rosie/extra/examples/ipv4.py:
+/Users/jjennings/Projects/rosie/extra/examples/reverse.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/sloc.py:
+#  <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/extra/examples/sloc_C.sh:
+/Users/jjennings/Projects/rosie/extra/examples/sloc_lua.sh:
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">ls ~/Projects/rosie/extra/examples</span>
+README.md       anbn.rpl        anbncndn.rpl    distinct.rpl    html.rpl        ipv4.py         sloc.py         sloc_lua.sh
+anbmcndm.rpl    anbncn.rpl      backref.rpl     dyck.rpl        images          reverse.rpl     sloc_C.sh
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">ls ~/Projects/rosie/extra/examples/images</span>
+p1.gif          readme-fig1.png readme-fig2.png readme-fig3.png readme-fig4.png readme-fig5.png
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span>
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span>
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match license ~/Projects/rosie/extra/examples/*</span>
+/Users/jjennings/Projects/rosie/extra/examples/README.md:
+/Users/jjennings/Projects/rosie/extra/examples/anbmcndm.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/anbn.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/anbncn.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/anbncndn.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/backref.rpl:
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/extra/examples/distinct.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/dyck.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/html.rpl:
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/extra/examples/images: Is a directory
+/Users/jjennings/Projects/rosie/extra/examples/ipv4.py:
+/Users/jjennings/Projects/rosie/extra/examples/reverse.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/sloc.py:
+#  <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/extra/examples/sloc_C.sh:
+/Users/jjennings/Projects/rosie/extra/examples/sloc_lua.sh:
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match license ~/Projects/rosie/extra/examples/* &gt; foo-correct.txt</span>
+/Users/jjennings/Projects/rosie/extra/examples/images: Is a directory
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">cat foo-correct.txt </span>
+/Users/jjennings/Projects/rosie/extra/examples/README.md:
+/Users/jjennings/Projects/rosie/extra/examples/anbmcndm.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/anbn.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/anbncn.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/anbncndn.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/backref.rpl:
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/extra/examples/distinct.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/dyck.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/html.rpl:
+-- <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/extra/examples/ipv4.py:
+/Users/jjennings/Projects/rosie/extra/examples/reverse.rpl:
+/Users/jjennings/Projects/rosie/extra/examples/sloc.py:
+#  <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+/Users/jjennings/Projects/rosie/extra/examples/sloc_C.sh:
+/Users/jjennings/Projects/rosie/extra/examples/sloc_lua.sh:
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match license ~/Projects/rosie/extra/examples/* &gt; foo-new.txt</span>
+/Users/jjennings/Projects/rosie/extra/examples/images: Is a directory
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">diff foo-new.txt foo-correct.txt </span>
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span>
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">diff foo-new.txt foo-correct.txt </span>
+7d6
+&lt; /Users/jjennings/Projects/rosie/extra/examples/backref.rpl:
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">echo $?</span>
+1
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">diff foo-new.txt foo-correct.txt </span>
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">echo $?</span>
+0
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match license ~/Projects/rosie/src/rpeg/compiler/*.[ch]</span>
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/foo.c:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/ktable-macros.h:
+/*  <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)  */
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpcap.c:
+/*  <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)  */
+** Copyright 2007, Lua.org &amp; PUC-Rio  (see 'lpeg.html' for <span class="bold">license</span>)
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpcap.h:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpcode.c:
+** Copyright 2007, Lua.org &amp; PUC-Rio  (see 'lpeg.html' for <span class="bold">license</span>)
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpcode.h:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpprint.c:
+** Copyright 2007, Lua.org &amp; PUC-Rio  (see 'lpeg.html' for <span class="bold">license</span>)
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lpprint.h:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lptree.c:
+** Portions Copyright 2013, Lua.org &amp; PUC-Rio  (see 'lpeg.html' for <span class="bold">license</span>)
+** Portions Copyright 2016, 2017, 2018, Jamie A. Jennings  (MIT <span class="bold">license</span>, like lpeg)
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lptree.h:
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/lptypes.h:
+** Copyright 2007-2015, Lua.org &amp; PUC-Rio  (see 'lpeg.html' for <span class="bold">license</span>)
+/Users/jjennings/Projects/rosie/src/rpeg/compiler/rbuf.c:
+/*  <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)  */
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo.rpl match license ~/Projects/rosie/src/rpeg/compiler/lpcap.h</span>
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span>
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie match 'find:"/*" find:"*/"' ~/Projects/rosie/src/rpeg/compiler/lpcap.h</span>
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie match -a 'find:"/*" find:"*/"' ~/Projects/rosie/src/rpeg/compiler/lpcap.h</span>
+/*
+** $Id: lpcap.h,v 1.2 2015/02/27 17:13:17 roberto Exp $
+*/
+
+#if !defined(lpcap_h)
+#define lpcap_h
+
+int r_lua_decode (lua_State *L);
+
+#endif
+
+
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie match -o jsonpp -a 'find:"/*" find:"*/"' ~/Projects/rosie/src/rpeg/compiler/lpcap.h</span>
+/*
+** $Id: lpcap.h,v 1.2 2015/02/27 17:13:17 roberto Exp $
+*/
+
+#if !defined(lpcap_h)
+#define lpcap_h
+
+int r_lua_decode (lua_State *L);
+
+#endif
+
+
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie match -a -o jsonpp 'find:"/*" find:"*/"' ~/Projects/rosie/src/rpeg/compiler/lpcap.h</span>
+/*
+** $Id: lpcap.h,v 1.2 2015/02/27 17:13:17 roberto Exp $
+*/
+
+#if !defined(lpcap_h)
+#define lpcap_h
+
+int r_lua_decode (lua_State *L);
+
+#endif
+
+
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie match --help</span>
+Usage: rosie match [-o &lt;output&gt;] [-w] [-a] [-F] [--time] [--help]
+       &lt;pattern&gt; [&lt;filename&gt;] [&lt;filename&gt;] ...
+
+Match the given RPL pattern against the input
+
+Arguments:
+   pattern               RPL pattern
+   filename              Input filename (default: <span class="comment">-)</span>
+
+Options:
+         <span class="comment">-o</span> &lt;output&gt;,    Output style, one of: byte, subs, color, line, jsonpp, bool, json, data
+   <span class="comment">--output</span> &lt;output&gt;
+   <span class="comment">-w,</span> <span class="comment">--wholefile</span>       Read the whole input file as single string
+   <span class="comment">-a,</span> <span class="comment">--all</span>             Output non-matching lines to stderr
+   <span class="comment">-F,</span> <span class="comment">--fixed-strings</span>   Interpret the pattern as a fixed string, not an RPL pattern
+   <span class="comment">--time</span>                Time each match, writing to stderr after each output
+   <span class="comment">--help</span>                Show this help message and exit.
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie match -w -o jsonpp 'find:"/*" find:"*/"' ~/Projects/rosie/src/rpeg/compiler/lpcap.h</span>
+{"subs": 
+   [{"e": 3, 
+     "s": 1, 
+     "type": "find.*", 
+     "data": "/*"}, 
+    {"e": 62, 
+     "s": 60, 
+     "type": "find.*", 
+     "data": "*/"}], 
+ "s": 1, 
+ "data": "/*\n** $Id: lpcap.h,v 1.2 2015/02/27 17:13:17 roberto Exp $\n*/", 
+ "type": "*", 
+ "e": 62}
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie match -w 'find:"/*" find:"*/"' ~/Projects/rosie/src/rpeg/compiler/lpcap.h</span>
+<span class="bold">/*</span>
+** $Id: lpcap.h,v 1.2 2015/02/27 17:13:17 roberto Exp $
+<span class="bold">*/</span>
+
+#if !defined(lpcap_h)
+#define lpcap_h
+
+int r_lua_decode (lua_State *L);
+
+#endif
+
+
+
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie --rpl 'com = 'find:"/*" find:"*/"' match -w com ~/Projects/rosie/src/rpeg/compiler/lpcap.h</span>
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">&gt; </span></span>bash: unexpected EOF while looking for matching `''
+bash: syntax error: unexpected end of file
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span>
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie --rpl 'com = find:"/*" find:"*/"' match -w com ~/Projects/rosie/src/rpeg/compiler/lpcap.h</span>
+<span class="bold">/*</span>
+** $Id: lpcap.h,v 1.2 2015/02/27 17:13:17 roberto Exp $
+<span class="bold">*/</span>
+
+#if !defined(lpcap_h)
+#define lpcap_h
+
+int r_lua_decode (lua_State *L);
+
+#endif
+
+
+
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie --rpl 'com = { find:"/*" find:"*/" }' match -w com ~/Projects/rosie/src/rpeg/compiler/lpcap.h</span>
+<span class="bold">/*</span>
+** $Id: lpcap.h,v 1.2 2015/02/27 17:13:17 roberto Exp $
+<span class="bold">*/</span>
+
+#if !defined(lpcap_h)
+#define lpcap_h
+
+int r_lua_decode (lua_State *L);
+
+#endif
+
+
+
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie --rpl 'com = { find:"/*" find:"*/" }' --color='com=green' match -w com ~/Projects/rosie/src/rpeg/compiler/lpcap.h</span>
+Usage: rosie [--verbose] [--rpl &lt;rpl&gt;] [-f &lt;file&gt;] [--norcfile]
+       [--rcfile &lt;rcfile&gt;] [--libpath &lt;libpath&gt;] [--colors &lt;colors&gt;]
+       [--help] [&lt;command&gt;] ...
+
+Error: unknown option '--color'
+Did you mean '--colors'?
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie --rpl 'com = { find:"/*" find:"*/" }' --colors='com=green' match -w com ~/Projects/rosie/src/rpeg/compiler/lpcap.h</span>
+<span class="custom-3">/*
+** $Id: lpcap.h,v 1.2 2015/02/27 17:13:17 roberto Exp $
+*/</span>
+
+#if !defined(lpcap_h)
+#define lpcap_h
+
+int r_lua_decode (lua_State *L);
+
+#endif
+
+
+
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie --colors='*=green' match -w 'find:"/*" find:"*/"' ~/Projects/rosie/src/rpeg/compiler/lpcap.h</span>
+<span class="custom-3">/*</span>
+** $Id: lpcap.h,v 1.2 2015/02/27 17:13:17 roberto Exp $
+<span class="custom-3">*/</span>
+
+#if !defined(lpcap_h)
+#define lpcap_h
+
+int r_lua_decode (lua_State *L);
+
+#endif
+
+
+
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span>
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie --rpl 'com = { find:"/*" find:"*/" }' --colors='com=red' match -w com ~/Projects/rosie/src/rpeg/compiler/lpcap.h</span>
+<span class="custom-2">/*
+** $Id: lpcap.h,v 1.2 2015/02/27 17:13:17 roberto Exp $
+*/</span>
+
+#if !defined(lpcap_h)
+#define lpcap_h
+
+int r_lua_decode (lua_State *L);
+
+#endif
+
+
+
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie --rpl 'com = { find:"/*" find:"*/" }' --colors='com=cyan' match -w com ~/Projects/rosie/src/rpeg/compiler/lpcap.h</span>
+<span class="custom-1">/*
+** $Id: lpcap.h,v 1.2 2015/02/27 17:13:17 roberto Exp $
+*/</span>
+
+#if !defined(lpcap_h)
+#define lpcap_h
+
+int r_lua_decode (lua_State *L);
+
+#endif
+
+
+
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie --rpl 'com = { find:"/*" find:"*/" }' --colors='com=magenta' match -w com ~/Projects/rosie/src/rpeg/compiler/lpcap.h</span>
+<span class="custom">/*
+** $Id: lpcap.h,v 1.2 2015/02/27 17:13:17 roberto Exp $
+*/</span>
+
+#if !defined(lpcap_h)
+#define lpcap_h
+
+int r_lua_decode (lua_State *L);
+
+#endif
+
+
+
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie --rpl 'com = { find:"/*" find:"*/" }' --colors='com=magenta' match -w com ~/Projects/rosie/src/rpeg/compiler/lpcap.h</span>
+<span class="custom">/*
+** $Id: lpcap.h,v 1.2 2015/02/27 17:13:17 roberto Exp $
+*/</span>
+
+#if !defined(lpcap_h)
+#define lpcap_h
+
+int r_lua_decode (lua_State *L);
+
+#endif
+
+
+
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie --rpl 'com = { find:"/*" find:"*/" }' --colors='com=magenta' match -w com lpcap.h</span>
+<span class="custom">/*
+** $Id: lpcap.h,v 1.2 2015/02/27 17:13:17 roberto Exp $
+*/</span>
+
+#if !defined(lpcap_h)
+#define lpcap_h
+
+int r_lua_decode (lua_State *L);  /* foobar */
+
+#endif
+
+
+
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie --rpl 'com = { find:"/*" find:"*/" }' --colors='com=magenta' match -w findall:com lpcap.h</span>
+<span class="custom">/*
+** $Id: lpcap.h,v 1.2 2015/02/27 17:13:17 roberto Exp $
+*/
+
+#if !defined(lpcap_h)
+#define lpcap_h
+
+int r_lua_decode (lua_State *L);  /* foobar */</span>
+
+#endif
+
+
+
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie --rpl 'com = { find:"/*" find:"*/" }' --colors='com=magenta' match -o jsonpp -w findall:com lpcap.h</span>
+{"e": 149, 
+ "s": 1, 
+ "data": "/*\n** $Id: lpcap.h,v 1.2 2015/02/27 17:13:17 roberto Exp $\n*/\n\n#if !defined(lpcap_h)\n#define lpcap_h\n\nint r_lua_decode (lua_State *L);  /* foobar */", 
+ "type": "*", 
+ "subs": 
+   [{"e": 62, 
+     "s": 1, 
+     "data": "/*\n** $Id: lpcap.h,v 1.2 2015/02/27 17:13:17 roberto Exp $\n*/", 
+     "type": "com", 
+     "subs": 
+       [{"e": 3, 
+         "s": 1, 
+         "type": "find.*", 
+         "data": "/*"}, 
+        {"e": 62, 
+         "s": 60, 
+         "type": "find.*", 
+         "data": "*/"}]}, 
+    {"e": 149, 
+     "s": 62, 
+     "data": "\n\n#if !defined(lpcap_h)\n#define lpcap_h\n\nint r_lua_decode (lua_State *L);  /* foobar */", 
+     "type": "com", 
+     "subs": 
+       [{"e": 139, 
+         "s": 137, 
+         "type": "find.*", 
+         "data": "/*"}, 
+        {"e": 149, 
+         "s": 147, 
+         "type": "find.*", 
+         "data": "*/"}]}]}
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie --rpl 'com = { "/*" find:"*/" }' --colors='com=magenta' match -o jsonpp -w findall:com lpcap.h</span>
+{"type": "*", 
+ "e": 149, 
+ "s": 1, 
+ "data": "/*\n** $Id: lpcap.h,v 1.2 2015/02/27 17:13:17 roberto Exp $\n*/\n\n#if !defined(lpcap_h)\n#define lpcap_h\n\nint r_lua_decode (lua_State *L);  /* foobar */", 
+ "subs": 
+   [{"type": "com", 
+     "e": 62, 
+     "s": 1, 
+     "data": "/*\n** $Id: lpcap.h,v 1.2 2015/02/27 17:13:17 roberto Exp $\n*/", 
+     "subs": 
+       [{"type": "find.*", 
+         "e": 62, 
+         "s": 60, 
+         "data": "*/"}]}, 
+    {"type": "com", 
+     "e": 149, 
+     "s": 137, 
+     "data": "/* foobar */", 
+     "subs": 
+       [{"type": "find.*", 
+         "e": 149, 
+         "s": 147, 
+         "data": "*/"}]}]}
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie --rpl 'com = { "/*" find:"*/" }' --colors='com=magenta' match -w findall:com lpcap.h</span>
+<span class="custom">/*
+** $Id: lpcap.h,v 1.2 2015/02/27 17:13:17 roberto Exp $
+*/</span>
+
+#if !defined(lpcap_h)
+#define lpcap_h
+
+int r_lua_decode (lua_State *L);  <span class="custom">/* foobar */</span>
+
+#endif
+
+
+
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie --rpl 'com = { "/*" find:"*/" }' --colors='com=magenta' match -w findall:com ~/Projects/rosie/extra/examples/*.py</span>
+/Users/jjennings/Projects/rosie/extra/examples/ipv4.py:
+/Users/jjennings/Projects/rosie/extra/examples/sloc.py:
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie --rpl 'com = { "#" find:"\n" }' --colors='com=magenta' match -w findall:com ~/Projects/rosie/extra/examples/*.py</span>
+/Users/jjennings/Projects/rosie/extra/examples/ipv4.py:
+<span class="custom"># Find all the ipv4 addresses in files given on the command line
+#
+# EXAMPLE: python ipv4.py ../../test/resolv.conf 
+</span>
+import sys, rosie
+
+engine = rosie.engine()
+engine.import_package('net')
+ipv4 = engine.compile('net.ipv4')
+
+for f in sys.argv[1:]:
+    matches = ipv4.search(open(f, 'r').read())
+    for m in matches:
+        print(m)
+
+
+
+/Users/jjennings/Projects/rosie/extra/examples/sloc.py:
+<span class="custom">#  -*- coding: utf-8; -*-
+#  -*- Mode: Python; -*-                                                   
+# 
+#  sloc.py
+# 
+#  &#169; Copyright Jamie A. Jennings 2018, 2019.
+#  LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)
+#
+# DEPENDENCIES:
+#   - A Rosie installation in /usr/local or other standard place
+#   - pip install rosie
+#
+# USAGE:
+#   python sloc.py "--" ../../src/lua/*.lua
+</span>
+from __future__ import unicode_literals, print_function
+import os, sys
+import rosie
+
+def print_usage():
+    print("Usage: " + sys.argv[0] + " &lt;comment_start&gt; [files ...]")
+
+if len(sys.argv) &lt; 2:
+    print_usage();
+    sys.exit(-1)
+
+comment_start = sys.argv[1]
+if os.path.isfile(comment_start) or len(comment_start) &gt; 2:
+    print('Error: first argument should be the comment character, e.g. "<span class="custom">#" or "--"')
+</span>    print_usage()
+    sys.exit(-1)
+
+<span class="custom"># The pattern source_line is defined below as "not looking at
+# optional-whitespace followed by either the start of a comment or the
+# end of the line".  So it will match non-comment, non-blank lines.
+</span>
+engine = rosie.engine()
+source_line = engine.compile('!{[:space:]* "' + comment_start + '"/$}')
+
+def count(f):
+    count = 0
+    for line in f:
+        if line and source_line.match(line): count <span class="comment">+=</span> 1
+    return count
+
+for f in sys.argv[2:]:
+    label = f + ": " if f else ""
+    print(label.ljust(36) + str(count(open(f, 'r'))).rjust(4) + " non-comment, non-blank lines")
+
+
+
+    
+
+
+
+                             
+
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo2.rpl match -w license ~/Projects/rosie/extra/examples/*.py</span>
+Error loading foo2.rpl:
+Compile error
+        [compiler]: undefined identifier: lua_comment
+        in foo2.rpl:22:11: license = lua_comment / c_comment / python_comment
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo2.rpl match -w license ~/Projects/rosie/extra/examples/*.py</span>
+/Users/jjennings/Projects/rosie/extra/examples/ipv4.py:
+/Users/jjennings/Projects/rosie/extra/examples/sloc.py:
+#  <span class="comment">-*-</span> coding: utf-8; <span class="comment">-*-</span>
+#  <span class="comment">-*-</span> Mode: Python; <span class="comment">-*-</span>                                                   
+# 
+#  sloc.py
+# 
+#  &#169; Copyright Jamie A. Jennings 2018, 2019.
+#  <span class="bold">LICENSE</span>: MIT License (https://opensource.org/licenses/mit-license.html)
+#
+# DEPENDENCIES:
+#   - A Rosie installation in /usr/local or other standard place
+#   - pip install rosie
+#
+# USAGE:
+#   python sloc.py "--" ../../src/lua/*.lua
+
+from __future__ import unicode_literals, print_function
+import os, sys
+import rosie
+
+def print_usage():
+    print("Usage: " + sys.argv[0] + " &lt;comment_start&gt; [files ...]")
+
+if len(sys.argv) &lt; 2:
+    print_usage();
+    sys.exit(-1)
+
+comment_start = sys.argv[1]
+if os.path.isfile(comment_start) or len(comment_start) &gt; 2:
+    print('Error: first argument should be the comment character, e.g. "#" or "--"')
+    print_usage()
+    sys.exit(-1)
+
+# The pattern source_line is defined below as "not looking at
+# optional-whitespace followed by either the start of a comment or the
+# end of the line".  So it will match non-comment, non-blank lines.
+
+engine = rosie.engine()
+source_line = engine.compile('!{[:space:]* "' + comment_start + '"/$}')
+
+def count(f):
+    count = 0
+    for line in f:
+        if line and source_line.match(line): count <span class="comment">+=</span> 1
+    return count
+
+for f in sys.argv[2:]:
+    label = f + ": " if f else ""
+    print(label.ljust(36) + str(count(open(f, 'r'))).rjust(4) + " non-comment, non-blank lines")
+
+
+
+    
+
+
+
+                             
+
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo2.rpl match -o subs -w license ~/Projects/rosie/extra/examples/*.py</span>
+/Users/jjennings/Projects/rosie/extra/examples/ipv4.py:
+/Users/jjennings/Projects/rosie/extra/examples/sloc.py:
+-*- coding: utf-8; <span class="comment">-*-</span>
+#  <span class="comment">-*-</span> Mode: Python; <span class="comment">-*-</span>                                                   
+# 
+#  sloc.py
+# 
+#  &#169; Copyright Jamie A. Jennings 2018, 2019.
+#  LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span>
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span>
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo2.rpl match --colors="license_text=magenta" -o subs -w license ~/Projects/rosie/extra/examples/*.py</span>
+/Users/jjennings/Projects/rosie/extra/examples/ipv4.py:
+/Users/jjennings/Projects/rosie/extra/examples/sloc.py:
+-*- coding: utf-8; <span class="comment">-*-</span>
+#  <span class="comment">-*-</span> Mode: Python; <span class="comment">-*-</span>                                                   
+# 
+#  sloc.py
+# 
+#  &#169; Copyright Jamie A. Jennings 2018, 2019.
+#  LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo2.rpl match --colors="license=magenta" -o subs -w license ~/Projects/rosie/extra/examples/*.py</span>
+/Users/jjennings/Projects/rosie/extra/examples/ipv4.py:
+/Users/jjennings/Projects/rosie/extra/examples/sloc.py:
+-*- coding: utf-8; <span class="comment">-*-</span>
+#  <span class="comment">-*-</span> Mode: Python; <span class="comment">-*-</span>                                                   
+# 
+#  sloc.py
+# 
+#  &#169; Copyright Jamie A. Jennings 2018, 2019.
+#  LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo2.rpl match --colors="license=magenta" -o subs -w license ~/Projects/rosie/extra/examples/sloc.py </span>
+-*- coding: utf-8; <span class="comment">-*-</span>
+#  <span class="comment">-*-</span> Mode: Python; <span class="comment">-*-</span>                                                   
+# 
+#  sloc.py
+# 
+#  &#169; Copyright Jamie A. Jennings 2018, 2019.
+#  LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo2.rpl match --colors="license=magenta" -w license ~/Projects/rosie/extra/examples/sloc.py </span>
+<span class="custom">#  -*- coding: utf-8; -*-
+#  -*- Mode: Python; -*-                                                   
+# 
+#  sloc.py
+# 
+#  &#169; Copyright Jamie A. Jennings 2018, 2019.
+#  LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)</span>
+#
+# DEPENDENCIES:
+#   - A Rosie installation in /usr/local or other standard place
+#   - pip install rosie
+#
+# USAGE:
+#   python sloc.py "--" ../../src/lua/*.lua
+
+from __future__ import unicode_literals, print_function
+import os, sys
+import rosie
+
+def print_usage():
+    print("Usage: " + sys.argv[0] + " &lt;comment_start&gt; [files ...]")
+
+if len(sys.argv) &lt; 2:
+    print_usage();
+    sys.exit(-1)
+
+comment_start = sys.argv[1]
+if os.path.isfile(comment_start) or len(comment_start) &gt; 2:
+    print('Error: first argument should be the comment character, e.g. "#" or "--"')
+    print_usage()
+    sys.exit(-1)
+
+# The pattern source_line is defined below as "not looking at
+# optional-whitespace followed by either the start of a comment or the
+# end of the line".  So it will match non-comment, non-blank lines.
+
+engine = rosie.engine()
+source_line = engine.compile('!{[:space:]* "' + comment_start + '"/$}')
+
+def count(f):
+    count = 0
+    for line in f:
+        if line and source_line.match(line): count <span class="comment">+=</span> 1
+    return count
+
+for f in sys.argv[2:]:
+    label = f + ": " if f else ""
+    print(label.ljust(36) + str(count(open(f, 'r'))).rjust(4) + " non-comment, non-blank lines")
+
+
+
+    
+
+
+
+                             
+
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo2.rpl match --colors="license=magenta" -o subs -w license ~/Projects/rosie/extra/examples/sloc.py </span>
+-*- coding: utf-8; <span class="comment">-*-</span>
+
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span><span class="comint-highlight-input">rosie -f foo2.rpl match --colors="license=magenta" -o subs -w findall:license ~/Projects/rosie/extra/examples/sloc.py </span>
+#  <span class="comment">-*-</span> coding: utf-8; <span class="comment">-*-</span>
+
+#  <span class="comment">-*-</span> Mode: Python; <span class="comment">-*-</span>                                                   
+
+# 
+
+#  sloc.py
+
+# 
+
+#  &#169; Copyright Jamie A. Jennings 2018, 2019.
+
+#  LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)
+#
+
+# DEPENDENCIES:
+
+#   - A Rosie installation in /usr/local or other standard place
+
+#   - pip install rosie
+
+#
+
+# USAGE:
+
+#   python sloc.py "--" ../../src/lua/*.lua
+
+#" or "--"')
+
+# The pattern source_line is defined below as "not looking at
+
+# optional-whitespace followed by either the start of a comment or the
+
+# end of the line".  So it will match non-comment, non-blank lines.
+
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">/tmp$ </span></span>
+<span class="comint-highlight-prompt">/tmp$ </span></pre>
+  </body>
+</html>

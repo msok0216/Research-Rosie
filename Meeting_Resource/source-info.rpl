@@ -1,0 +1,19 @@
+-- -*- Mode: rpl; -*-                                                               
+--
+-- source-info.rpl
+--
+-- © Copyright  2019.
+-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)
+-- AUTHOR: 
+
+cr = ci:"copyright"/ci:"copywrite"
+
+year = [0-9]{4}
+
+
+find_cr = find:cr find:year
+
+-- test find_cr accepts "** Portions Copyright 2013", "/*  © Copyright Jamie A. Jennings, 2018"
+-- test find_cr accepts "/* copywrite year 2000"
+
+-- test find_cr rejects "/* copywrite"
