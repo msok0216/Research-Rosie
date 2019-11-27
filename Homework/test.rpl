@@ -1,0 +1,53 @@
+-- test accepts "/**
+  * @author Marcus Kim
+  * Copyright: NC State University
+  * MIT License
+  */"
+
+-- test accepts "/**
+  * License: MIT
+  * author- Marcus Kim
+  */"
+
+-- test accepts "/**
+  * License: BSD
+  * author- Marcus Kim
+  */"
+
+-- test accepts "/**
+  * bsd license 
+  */"
+
+-- test accepts "/**
+  * @author: Marcus Kim
+  */"
+
+-- test accepts "/**
+  * Copyright NCSU
+  */"
+
+
+-- test accepts "# BSD License
+# Author: Marcus Kim
+#
+# Copyright: NCSU
+#"
+
+-- test accepts "#BSD License
+#Author: Marcus Kim
+#
+#Copyright: NCSU
+#"
+
+
+-- test accepts "# License BSD
+# Author: Marcus Kim
+#
+# NCSU Copyright
+#"
+
+-- test accepts "-- Copyright NCSU
+-- License MIT
+-- Author: Marcus Kim"
+
+-- test rejects "No Licence"

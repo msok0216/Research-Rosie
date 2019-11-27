@@ -1,0 +1,51 @@
+constants.py:
+globals.py:
+hash_map.py:
+release.py:
+results.py:
+test.py:
+{"subs": 
+   [{"subs": 
+       [{"subs": 
+           [{"subs": 
+               [{"data": "marcus", 
+                 "e": 16, 
+                 "type": "author.author_info", 
+                 "s": 10}, 
+                {"data": "Kim", 
+                 "e": 20, 
+                 "type": "author.author_info", 
+                 "s": 17}], 
+             "data": "author: marcus Kim", 
+             "e": 20, 
+             "type": "author.find.*", 
+             "s": 2}, 
+            {"subs": 
+               [{"data": "Marcus", 
+                 "e": 77, 
+                 "type": "author.author_info", 
+                 "s": 71}, 
+                {"data": "Copyright", 
+                 "e": 92, 
+                 "type": "author.author_info", 
+                 "s": 83}], 
+             "data": "Author: Marcus\r\n    Copyright", 
+             "e": 92, 
+             "type": "author.find.*", 
+             "s": 63}], 
+         "data": "author: marcus Kim\r\n#copyright: NCSU\r\n#MIT License\r\n\"\"\"\r\n    Author: Marcus\r\n    Copyright", 
+         "e": 92, 
+         "type": "author.find_author", 
+         "s": 2}], 
+     "data": "#author: marcus Kim\r\n#copyright: NCSU\r\n#MIT License\r\n\"\"\"\r\n    Author: Marcus\r\n    Copyright:", 
+     "e": 93, 
+     "type": "find.*", 
+     "s": 1}], 
+ "data": "#author: marcus Kim\r\n#copyright: NCSU\r\n#MIT License\r\n\"\"\"\r\n    Author: Marcus\r\n    Copyright:", 
+ "e": 93, 
+ "type": "python_author", 
+ "s": 1}
+utils.py:
+utils_youtube_dl.py:
+views.py:
+webdriver.py:

@@ -1,0 +1,13 @@
+import author, license, copyright
+
+alias lua_starting = "--" / "--["
+alias lua_ending = "\n"
+
+-- java comments can be anywhere between "/*" and "*/" or come after  "//"
+lua_author = findall: { [ ]* "--" author.find_author [^\n]} / { [ ]* "--[" author.find_author [^\n]}
+lua_copyright = findall: {[ ]* "--" copyright.find_copyright [^\n]} / {[ ]* "--[" copyright.find_copyright [^\n]}
+--lua_copyright = findall: { find:lua_starting [ ]* copyright.copyright find:lua_ending }
+
+
+--fails to load because of licence definition issue
+lua_license = findall: { [ ]* "--" license.license} / { [ ]* "--[" license.license [^\n]}

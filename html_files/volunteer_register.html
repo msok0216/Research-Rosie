@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load cms_tags %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+
+{% block extra_css %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/registration.css' %}"/>
+{% endblock %}
+
+{% block base_content %}
+{% static_placeholder "volunteer_application_introduction" %}
+<form action="{% url 'volunteer_register_url' %}" class="form-horizontal" method="post">
+    {% crispy form form.helper1 %}
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+            <span><b>You must read and agree to the following waiver in order to participate in this event.</b></span>
+            <div class="well">
+                I know and understand that some Service Raleigh activities require strenuous physical exertion. I attest that I am medically able to perform these activities, and I assume all risks associated with participating in this event, including to but not limited to: falls, contact with other participants, effects of the weather, traffic, and the condition of the site. All such and related risks being known and appreciated by me. Having read and understood this waiver and in consideration of your accepting my registration, I for myself and anyone entitled to act on my behalf, waive and release Service Raleigh, North Carolina State University, all partner organizations, volunteers, their officers, employees, agents, representatives and successors from all claims or liabilities of any kind resulting from my participation in this event even though that liability may arise out of negligence or carelessness on the part of the persons named in this waiver. I grant permission to all foregoing to use any photographs, motion pictures, recordings, or any other record of this event for legitimate purposes. I hereby waive any right to inspect or approve the finished electronic, photographic, or printed matter that may be used in conjunction with them now or in the future. I will abide by these guidelines.<br/><br/>
+
+                
+                {% crispy form form.helper3 %}
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="well">
+            <p style="text-align:center">Please select one of the following options.</p>
+            <div class="row" id="registerFormButtons" >
+                <div id="noGroupButton" class="reg-button col-lg-4">
+                    <a id="individualLink" href="#" data-toggle="tooltip" data-placement="top" title="You will be placed at a work site with other volunteers.">Individual</a>
+                </div>
+                <div id="joinGroupButton" class="reg-button col-lg-4">
+                    <a id="joinGroupLink" href="#" data-toggle="tooltip" data-placement="top" title="You will be placed at the same work site as your fellow group members.">Join a Group</a>
+                </div>
+                <div id="createGroupButton" class="reg-button col-lg-4">
+                    <a id="createGroupLink" href="#" data-toggle="tooltip" data-placement="top" title="Create and join a group of volunteers who are all placed at the same work site.">Create a Group</a>
+                </div>
+            </div>
+
+            <br/>
+        <div id="createGroup">
+            <p class="col-lg-10 col-lg-offset-1">
+                Before creating your group, be sure another group member has not already created one by checking the <a href="{% url 'registered_groups_url' %}" target="_blank">list of registered groups</a>.<br/></br/>
+            </p><br/>
+            {% crispy group_form %}
+
+        </div>
+        <div id="individual" class="row-fluid">
+            {% crispy indiv_form %}
+        </div>
+        <div id="joinGroup">
+            {% crispy join_form %}
+        </div>
+    </div>
+
+</form>
+{% endblock %}
+{% block extra_js %}
+<script type="text/javascript">
+
+$(function(){
+    $("#individualLink")
+        .tooltip()
+        .click(function(){
+            hideAll();
+            $("#individual").fadeIn(100);
+            $(this).parent().addClass("active");
+            $("#type").val("individual");
+            return false;
+        });
+
+    $("#joinGroupLink")
+        .tooltip()
+        .click(function(){
+            hideAll();
+            $("#joinGroup").fadeIn(100);
+            $(this).parent().addClass("active");
+            $("#type").val("joinGroup");
+            return false;
+        });
+
+    $("#createGroupLink")
+        .tooltip()
+        .click(function(){
+            hideAll();
+            $("#createGroup").fadeIn(100);
+            $(this).parent().addClass("active");
+            $("#type").val("createGroup");
+            return false;
+        });
+    hideAll();
+    $("#submit").hide();    
+});
+
+/* Functions for button hover and active/inactive switching. */
+
+function hideAll(){
+    $("#submit").show();
+    $("#submit").attr('disabled', false);
+    $("#submit").removeClass("disabled");
+    $("#submit").addClass("primary");
+    $("#individual").hide();
+    $("#joinGroup").hide();
+    $("#createGroup").hide();
+    $("#createGroupButton").removeClass("active");
+    $("#noGroupButton").removeClass("active");
+    $("#joinGroupButton").removeClass("active");
+}
+
+</script>
+{% endblock %}

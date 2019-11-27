@@ -1,0 +1,193 @@
+{% extends "admin_base.html" %}
+
+{% block body_javascript %}
+<script type="text/javascript">
+    $(function() {
+
+        $(".partner-detail").hide();
+        $(".show-detail").click(function(){
+            var parent = $(this).parents("td");
+            $(".partner-detail", parent).toggle();
+        });
+        {% if partner_focus %}
+        detail({{partner_focus}});
+        {% endif %}
+    });
+    function detail(id){
+        $(".partner-detail").hide();
+        $(".partner-detail", $("#partner-"+id)).delay(100).show(200);
+        $.scrollTo( "#partner-"+id, 800);
+    }
+</script>
+{% endblock %}
+
+{% block base_content %}
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Current Partners</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <a class='btn btn-danger delete-all-link' href="#">Delete Partners</a>
+    </div>
+</div>
+<br/>
+<div style="background-color:white">
+    <table class="table table-striped table-bordered" id="partner-list">
+        {% for partner in object_list %}
+            <tr>
+                <td id="partner-{{partner.pk}}">
+                    <div class="row">
+                        <span class="col-xs-6"><b>{{ partner.name }}</b></span>
+                        <span class="col-xs-3">{{ partner.min_volunteers }} - {{ partner.max_volunteers }} volunteers</span>
+                        <span class="col-xs-3" style="text-align:right">
+                            {% if partner.status == 0 %}
+                                Pending <a class='accept-link' href="#" data-sr-id='{{partner.pk}}' data-sr-name='{{partner.name}}'>(Accept)</a> <a class='deny-link' href="#" data-sr-id='{{partner.pk}}' data-sr-name='{{partner.name}}'>(Deny)</a>
+                            {% endif %}
+                            {% if partner.status == 1 %}
+                                Accepted <a class='deny-link' href="#" data-sr-id='{{partner.pk}}' data-sr-name='{{partner.name}}'>(Deny)</a>
+                            {% endif %}
+                            {% if partner.status == 2 %}
+                                Denied <a class='accept-link' href="#" data-sr-id='{{partner.pk}}' data-sr-name='{{partner.name}}'>(Accept)</a>
+                            {% endif %}                      
+                        </span>
+                    </div>
+                    <div class="row">
+                        <span class="col-xs-12"><a href="javascript:;" class="show-detail" data-toggle='tooltip' title='Show/edit partner representative, email, phone, address, project, etc.'> Details </a></span>
+                    </div>
+                    <div class="row partner-detail">
+                        <span class="col-xs-12"><b>Representative:</b> {{ partner.contact_name }}</span>
+                        <span class="col-xs-12"><b>Email:</b> <a href="mailto:{{ partner.email }}">{{ partner.email }}</a></span>
+                        <span class="col-xs-12"><b>Phone:</b> {{ partner.phone }}</span>
+                        <span class="col-xs-12"><b>Mailing:</b> {{ partner.mail_address1 }} {{ partner.mail_address2 }} {{ partner.mail_city }}, {{ partner.mail_state }} {{ partner.mail_zip_code }}</span>
+                        <span class="col-xs-12"><b>Worksite:</b> {{ partner.work_address1 }} {{ partner.work_address2 }} {{ partner.work_city }}, {{ partner.work_state }} {{ partner.work_zip_code }}</span>
+                        <span class="col-xs-12"><b>Project Description:</b> {{ partner.description }}</span>
+                        <span class="col-xs-12"><b>Rain Plan:</b> {{ partner.rain_plan }}</span>
+                        {% if partner.leader != None %}
+                            <!-- Added for loop to iterate through leaders in  -->
+                            <span class="col-xs-12"><b>Leader:</b>
+                            {% for leader in partner.leader.all %}
+                                {{ leader.first_name }} {{ leader.last_name }} (<a href="mailto:{{ parenter.leader.email }}">{{ leader.email }}</a>)
+                            {% endfor %}
+                            </span>
+                        {% else %}
+                        <span class="col-xs-12"><b>Leader:</b> (None Assigned)</span>
+                        {% endif %}
+                        <span class="col-xs-12"><a href='{% url 'admin:volunteer_manager_partner_change' partner.id%}' class='btn btn-small' data-toggle='tooltip' title='Edit partner information and assignment details'>Edit</a></span>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <div style="height:10px"></div>
+</div>
+
+<!-- Accept/Deny Partner Modal -->
+<div id="accept-partner-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="accept-partner" method="POST" action="{% url 'partner_accept_url' %}">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3 id="accept-partner-modal-label">Accept Partner</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to accept <b><span id="accept-partner-name"></b>?</p>
+                    <p>The partner will be notified by email of your decision.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <input type="submit" class="btn btn-primary" value="Accept">
+                </div>
+                <input type="hidden" id="pk" name="pk"/>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="deny-partner-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="deny-partner" method="POST" action="{% url 'partner_deny_url' %}">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3 id="deny-partner-modal-label">Deny Partner</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to deny <b><span id="deny-partner-name"></b>?</p>
+                    <p>Please give the reason for denying the partner which will be included in the email.</p>
+                    <textarea form="deny-partner" class="form-control" name="message" required="required" rows="4"> </textarea>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <input type="submit" class="btn btn-primary" value="Deny">
+                </div>
+                <input type="hidden" id="pk" name="pk"/>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="delete-partners-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="delete-partners" method="POST" action="{% url 'partners_delete_url' %}">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3 id="deny-partners-modal-label">Delete All Partners</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete all partners from the database?</p>
+                    <p>We highly reccommend exporting all partner information via the <a href="{% url 'documents_control_panel_url' %}">documents</a> panel first.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <input type="submit" class="btn btn-danger" value="Delete">
+                </div>
+                <input type="hidden" id="pk" name="pk"/>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function acceptPartner(partnerID, partnerName) {
+    $("#accept-partner #pk").val(partnerID);
+    $("#accept-partner #accept-partner-name").html(partnerName);
+    $("#accept-partner-modal").modal();
+}
+
+function denyPartner(partnerID, partnerName) {
+    $("#deny-partner #pk").val(partnerID);
+    $("#deny-partner #deny-partner-name").html(partnerName);
+    $("#deny-partner-modal").modal(); 
+}
+
+function deleteAllPartners() {
+    $("#delete-partners-modal").modal();
+}
+
+$(".accept-link").click(function()
+{
+    acceptPartner($(this).data("sr-id"), $(this).data("sr-name"));
+});
+$(".deny-link").click(function()
+{
+    denyPartner($(this).data("sr-id"), $(this).data("sr-name"));
+});
+$(".delete-all-link").click(function()
+{
+    deleteAllPartners();
+});
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
+</script>
+{% endblock %}

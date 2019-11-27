@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load cms_tags %}
+
+{% block base_content %}
+	<div id="groupleader">
+		<p> {{ partner.name }} </p>
+	</div>
+	<div class="well well-sm">
+		<p>
+		<strong>Site Contact:</strong> {{ partner.contact_name }}<br>
+		<strong>Contact Phone</strong> {{ partner.phone }}<br>
+		<strong>Site Location:</strong> {{partner.formatted_address}}<br>
+		<strong>Description:</strong> {{ partner.description }}<br><br>
+		<strong>Site Leader:</strong> {{ partner.leader.display_name }} <br>
+		<strong>Site Leader Email:</strong> <a href="mailto:{{partner.leader.email}}"> {{ partner.leader.email }}</a> <br>
+		<!-- Uses Django's default behavior should display_name return None -->
+		<!-- https://docs.djangoproject.com/en/dev/ref/templates/builtins/#default -->
+		</p>
+	</div>
+	<div class="well well-lg">
+        <p><strong>Email List: </strong> {{ email_list }}</p><br />
+		<a href="mailto: {{ email_list }}">Mail All</a>
+	</div>
+	<div class="panel panel-default">
+  		<div class="panel-heading">Members ({{partner.num_volunteers}})</div>
+		<table class="table">
+			<tr>
+				<th class="col-md-3">Name</th>
+                <th class="col-md-3">Email</th>
+				<th class="col-md-3">Emergency Contact</th>
+				<th class="col-md-3">Personal stuff</th>
+			</tr>
+   			{% for volunteer in list %}
+   			<tr>
+   				<td class="col-md-3">{{ volunteer.display_name }}</td>
+                <td class="col-md-3">{{ volunteer.email }}</td>
+   				<td class="col-md-3"><strong>{{ volunteer.emergency_contact }}:</strong> {{ volunteer.emergency_phone }}</td>
+   				<td class="col-md-3">{{ volunteer.other_info }}</td>
+   			</tr>
+			{% endfor %}
+  		</table>
+	</div>
+	<br>
+{% endblock %}

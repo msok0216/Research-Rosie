@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load cms_tags %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+
+{% block extra_css %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/registration.css' %}"/>
+{% endblock %}
+
+{% block base_content %}
+{% static_placeholder "partner_application_introduction" %}
+<form action="{% url 'partner_register_url' %}" class="form-horizontal" method="post">
+    {% crispy form form.helper1 %}
+    {% crispy form form.helper2 %}
+    {% crispy form form.helper3 %}
+</form>
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script>
+
+function update_work_addr(isSame)
+{
+    if($("#id_mail_same").is(":checked"))
+    {
+        $("#id_mail_address1").val($("#id_work_address1").val());
+        $("#id_mail_address1").prop( "readonly", true );
+
+        $("#id_mail_address2").val($("#id_work_address2").val());
+        $("#id_mail_address2").prop( "readonly", true );
+
+        $("#id_mail_city").val($("#id_work_city").val());
+        $("#id_mail_city").prop( "readonly", true );
+
+        $("#id_mail_state").val($("#id_work_state").val());
+        $("#id_mail_state").prop( "readonly", true );
+
+        $("#id_mail_zip_code").val($("#id_work_zip_code").val());
+        $("#id_mail_zip_code").prop( "readonly", true );
+    } 
+    else 
+    {
+        $("#id_mail_address1").prop( "readonly", false );
+        $("#id_mail_address2").prop( "readonly", false );
+        $("#id_mail_city").prop( "readonly", false );
+        $("#id_mail_state").prop( "readonly", false );
+        $("#id_mail_zip_code").prop( "readonly", false );
+
+    }   
+}
+
+$(function()
+{
+    update_work_addr();
+    $("#id_mail_same").change(function() {
+        update_work_addr();
+    });
+})
+
+</script>
+
+{% endblock %}

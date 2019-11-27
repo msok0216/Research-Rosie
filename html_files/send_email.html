@@ -1,0 +1,47 @@
+{% extends "admin_base.html" %}
+{% load cms_tags %}
+
+{% block base_content %}
+
+<center>
+<p> Please acknowledge this is the email you intend to send. </p>
+<br>
+<p><strong>You are Sending: {{ name }}</strong>
+</p>
+<p>
+If You click Submit There is no going back.
+
+Seriously. This is THE last warning.
+</p>
+</center>
+<h4>Opens<span class="badge">{{ opens }}</span></h4>
+<h4>Hard bounces<span class="badge">{{ hard_bounces }}</span></h4>
+<h4>Sent today<span class="badge">{{ sent_today }}</span></h4>
+<div class="well" id="content"></div>
+<form action="{{ request.get_full_path }}" method="POST">
+    {% csrf_token %}
+    <div class="col-lg-12"><center><strong>Send {{ name }} ?</strong></center><br></div>
+    <div class="col-lg-6 col-lg-offset-3"><strong>Send {{ name }} to:</strong><br>
+    	<input type="email" class="form-control" id="to_email" name="to_email" placeholder="Enter email">
+    	<br>
+    </div>
+    <div class="col-lg-12">
+    	<input class='btn btn-danger col-lg-2 col-lg-offset-1' type='submit' name='send-email' value='Send Email'/>
+    	<input class='btn btn-primary col-lg-2 col-lg-offset-2' type='submit' name='test-email' value='Test Email'/>
+    	<a class="btn btn-warning col-lg-2 col-lg-offset-2" href="{% url 'email_control_panel_url' %}">No, take me back</a>
+    </div>
+</form>
+{% endblock %}
+{% block extra_js %}
+<script>
+$( document ).ready(function() {
+	//content has been stripped of next lines but needs to be decoded
+	var text = '{{content}}';
+	console.log(text);
+	//decode the html encoding to make plain text
+	var decoded = $('<div/>').html(text).text();
+	console.log(decoded);
+    $('#content').append(decoded);
+});
+</script>
+{% endblock %}

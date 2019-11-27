@@ -1,0 +1,10 @@
+{% extends "admin_base.html" %}
+{% load crispy_forms_tags %}
+{% block base_content %}
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Compose Email</h1>
+    </div>
+</div>
+{% crispy form form.helper %}<span class="col-lg-1"></span><a class="btn btn-warning col-lg-2" href="{% url 'email_control_panel_url' %}">No, take me back</a>
+{% endblock %}

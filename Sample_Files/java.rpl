@@ -1,0 +1,27 @@
+
+import author, license, copyright
+alias java_starting = "/*" / "[*]+" / "//"
+alias java_ending = "*/" 
+
+-- java comments can be anywhere between "/*" and "*/" or come after  "//"
+
+-- java_author = find: {find:java_starting author.author}
+java_author = find:{"/*" author.find_author [^\n]*} / find:{"//" author.find_author [^\n]*}
+java_copyright = find: { [ ]* find:java_starting copyright.find_copyright }
+java_license = find: { [ ]* java_starting license.license}
+
+test = find:{find:java_starting [ ]* find:java_copyright find: java_ending}
+
+testing = findall:{!java_starting author.author}
+
+ans = findall:{{"/*" author.author find:"*/"} / {find:"//" author.author [^\n]*}}
+
+--print a block of comments 
+--java_author = find:{"/*" author.find_author find:"*/"} / find:{"//" author.find_author [^\n]*}
+
+
+
+data = [^\n]*
+sample = find:{java_starting }
+
+test_author = find:{author.find_author }

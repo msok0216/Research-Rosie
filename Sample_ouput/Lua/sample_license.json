@@ -1,0 +1,24 @@
+{"e": 129, 
+ "s": 1, 
+ "type": "lua_license", 
+ "data": "-- This file is created for testing purpose\r\n-- author: Marcus\r\n--[[\r\n    author: NCSU CSC\r\n    Copyright: NCSU\r\n    MIT License", 
+ "subs": 
+   [{"e": 129, 
+     "s": 1, 
+     "type": "find.*", 
+     "data": "-- This file is created for testing purpose\r\n-- author: Marcus\r\n--[[\r\n    author: NCSU CSC\r\n    Copyright: NCSU\r\n    MIT License", 
+     "subs": 
+       [{"e": 129, 
+         "s": 3, 
+         "type": "license.license", 
+         "data": " This file is created for testing purpose\r\n-- author: Marcus\r\n--[[\r\n    author: NCSU CSC\r\n    Copyright: NCSU\r\n    MIT License", 
+         "subs": 
+           [{"e": 129, 
+             "s": 118, 
+             "type": "license.licenses", 
+             "data": "MIT License", 
+             "subs": 
+               [{"e": 121, 
+                 "s": 118, 
+                 "type": "license.license_names", 
+                 "data": "MIT"}]}]}]}]}

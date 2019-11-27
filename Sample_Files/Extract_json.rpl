@@ -1,0 +1,68 @@
+package All
+-- This file contains 
+
+local year = [0-9]{4}
+local name_part = [[\-.] [:alpha:]]+
+name = {name_part {[ ] name_part}+ }
+
+local c = find:ci:"copyright" (find:year)? (find:name)? (find:year)?
+
+copyright = find:c
+
+license_names = ci:"MIT" / ci:"Apache" / ci:"BSD" / ci:"Apple" / ci:"Artistic" / ci:"Common" / ci:"Eclipse" / ci:"eCos" / ci:"Boost" / ci:"Eiffel" / ci:"Entessa" / ci:"EU" / ci:"GNU" / ci:"IBM" / ci:"IPA" / ci:"ISC" / ci:"Mozilla" / ci:"NTP"        -- need more!
+-- assume there is a new line character at the end of each license line
+licenses = {(license_names ci:"license") / (ci:"license" license_names) / (ci:"license: " license_names) find:"\n"}
+license = find:licenses
+
+author_info = [:alpha:]+
+author = {(find:ci:"author" [ ]* (find:author_info)?) / ((find:author_info)? [ ]* find:ci:"author" ) find:"\n"}
+
+alias python_comment ="#"
+alias c_comment = "/[*]+" / [*]+ / "//"
+alias lua_comment = "--"
+
+alias comment = lua_comment / c_comment / python_comment
+
+all = find:{ [ ]* comment [:space:]* (license / author) .* }
+
+-- separate files among languages since java has a different, use the common author/license/copyright pattern, different comment pattern.
+-- find looks for any occurences of pattern
+-- * one or many
+-- .* any strings
+-- findall finds all occurences of patterns(useful for python/lua)
+-- subs submatches-only show the ones that match
+-- rosie grep == findall
+-- rosie config: rosie_libpath-rosie look for library, set rosie libpath for import packages.
+-- package packagename: declare that the file is a package
+-- gitlab for instructions
+-- curl -s webpage
+-- separate author//copyright/license-- gather html files 
+
+
+-- test all accepts "/**\n* @author Marcus Kim\n* Copyright: NC State University\n* MIT License\n*/"
+
+-- test all accepts "/**\n* License: MIT\n* author- Marcus Kim\n*/"
+
+-- test all accepts "/**\n* License: BSD\n* author- Marcus Kim\n*/"
+
+-- test all accepts "/**\n* bsd license \n*/"
+
+-- test all accepts "/**\n* @author: Marcus Kim\n*/"
+
+-- test all accepts "/**\n* Copyright NCSU\n*/"
+
+
+-- test all accepts "# BSD License\n# Author: Marcus Kim\n#\n# Copyright: NCSU\n#"
+
+-- test all accepts "#BSD License\n#Author: Marcus Kim\n#\n#Copyright: NCSU\n#"
+
+
+-- test all accepts "# License BSD\n# Author: Marcus Kim\n#\n# NCSU Copyright\n#"
+
+-- test all accepts "-- Copyright NCSU\n-- License MIT\n-- Author: Marcus Kim"
+
+-- test all rejects "No Licence"
+-- test all rejects ""
+-- test all rejects "# New file"
+
+

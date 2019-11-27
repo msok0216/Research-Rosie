@@ -1,0 +1,6 @@
+package html
+
+local html_tag_beginning = "<html>"
+local html_tag_end = "</html>"
+
+html_search = find:{html_tag_beginning .* html_tag_end}

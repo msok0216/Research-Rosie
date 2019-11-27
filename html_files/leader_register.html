@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load cms_tags %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+
+{% block extra_css %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/registration.css' %}"/>
+{% endblock %}
+
+{% block base_content %}
+{% static_placeholder "leader_application_introduction" %}
+<form action="{% url 'leader_register_url' %}" class="form-horizontal" method="post">
+    {% crispy form form.helper1 %}
+    {% crispy form form.helper2 %}
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+            <span><b>You must read and agree to the following waiver in order to participate in this event.</b></span>
+            <div class="well">
+                I know and understand that some Service Raleigh activities require strenuous physical exertion. I attest that I am medically able to perform these activities, and I assume all risks associated with participating in this event, including to but not limited to: falls, contact with other participants, effects of the weather, traffic, and the condition of the site. All such and related risks being known and appreciated by me. Having read and understood this waiver and in consideration of your accepting my registration, I for myself and anyone entitled to act on my behalf, waive and release Service Raleigh, North Carolina State University, all partner organizations, volunteers, their officers, employees, agents, representatives and successors from all claims or liabilities of any kind resulting from my participation in this event even though that liability may arise out of negligence or carelessness on the part of the persons named in this waiver. I grant permission to all foregoing to use any photographs, motion pictures, recordings, or any other record of this event for legitimate purposes. I hereby waive any right to inspect or approve the finished electronic, photographic, or printed matter that may be used in conjunction with them now or in the future. I will abide by these guidelines.<br/><br/>
+                {% crispy form form.helper3 %}
+            </div>
+        </div>
+    </div>
+
+</form>
+
+{% endblock %}
+{% block extra_js %}
+<script type="text/javascript">
+
+/* Functions for button hover and active/inactive switching. */
+
+function hideAll(){
+    $("#submit").show();
+    $("#submit").attr('disabled', false);
+    $("#submit").removeClass("disabled");
+    $("#submit").addClass("primary");
+}
+
+</script>
+{% endblock %}

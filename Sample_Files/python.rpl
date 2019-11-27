@@ -1,0 +1,11 @@
+import author, license, copyright
+
+alias python_comment ="#"
+-- python comment pattern starts with # and ends with a newline character
+--python_author = findall: { [ ]* python_comment [:space:]* author.author find:"\n"}
+--python_copyright = findall: { [ ]* python_comment [:space:]* copyright.copyright find:"\n" }
+--python_license = findall: { [ ]* python_comment [:space:]* license.license find:"\n" }
+
+python_author = find:{"#" author.find_author [^\n]} / find:{"\"\"\"" author.find_author "\"\"\""}
+python_copyright = find:{"#" copyright.find_copyright [^\n]} / find:{"\"\"\"" copyright.find_copyright "\"\"\""}
+python_license = find:{"#" license.license [^\n]} / find:{"\"\"\"" license.license "\"\"\""}

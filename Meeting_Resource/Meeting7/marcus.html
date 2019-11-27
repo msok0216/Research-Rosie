@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- Created by htmlize-1.53 in css mode. -->
+<html>
+  <head>
+    <title>*shell*</title>
+    <style type="text/css">
+    <!--
+      body {
+        font-size: 172%;
+      }
+      .comint-highlight-input {
+        /* comint-highlight-input */
+        font-weight: bold;
+      }
+      .comint-highlight-prompt {
+        /* comint-highlight-prompt */
+        color: #0000cd;
+      }
+      .comint-highlight-prompt {
+        /* comint-highlight-prompt */
+        color: #0000cd;
+      }
+
+      a {
+        color: inherit;
+        background-color: inherit;
+        font: inherit;
+        text-decoration: inherit;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    -->
+    </style>
+  </head>
+  <body>
+    <pre>
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">~/Projects/dev$ </span></span><span class="comint-highlight-input">rosie test ~/Downloads/licence.rpl</span>
+/Users/jjennings/Downloads/licence.rpl
+      line 31  FAILED: license did not accept "MIT license"
+      line 31  FAILED: license did not accept "Apache LICENSE"
+      line 31  FAILED: license did not accept "License BSD"
+  Tests: 3  Errors: 0  Failures: 3  Blocked: 0  Passed: 0
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">~/Projects/dev$ </span></span><span class="comint-highlight-input">rosie test ~/Downloads/licence.rpl</span>
+/Users/jjennings/Downloads/licence.rpl
+      line 31  FAILED: licenses did not accept "License BSD"
+  Tests: 3  Errors: 0  Failures: 1  Blocked: 0  Passed: 2
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">~/Projects/dev$ </span></span><span class="comint-highlight-input">rosie -f ~/Downloads/licence.rpl match java.licenses &lt;&lt;&lt; "License BSD"</span>
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">~/Projects/dev$ </span></span><span class="comint-highlight-input">rosie -f ~/Downloads/licence.rpl trace java.licenses &lt;&lt;&lt; "License BSD"</span>
+Expression: {{license_names ~ {{"l" / "L"} {"i" / "I"} {"c" / "C"} {"e" / "E"} {"n" / "N"} {"s" / "S"} {"e" / "E"}}} / {{{{"l" / "L"} {"i" / "I"} {"c" / "C"} {"e" / "E"} {"n" / "N"} {"s" / "S"} {"e" / "E"}} ~ license_names} 
+grammar
+        alias &lt;search&gt; = {!"\\n" .}*
+        &lt;anonymous&gt; = {"\\n"}
+in
+        alias find = {&lt;search&gt; &lt;anonymous&gt;}
+end
+}}
+Looking at: &#12298;License BSD&#12299; (input pos = 1)
+No match
+&#9500;&#9472;&#9472; Expression: {license_names ~ {{"l" / "L"} {"i" / "I"} {"c" / "C"} {"e" / "E"} {"n" / "N"} {"s" / "S"} {"e" / "E"}}}
+&#9474;   Looking at: &#12298;License BSD&#12299; (input pos = 1)
+&#9474;   No match
+&#9492;&#9472;&#9472; Expression: {{{{"l" / "L"} {"i" / "I"} {"c" / "C"} {"e" / "E"} {"n" / "N"} {"s" / "S"} {"e" / "E"}} ~ license_names} 
+    grammar
+        alias &lt;search&gt; = {!"\\n" .}*
+        &lt;anonymous&gt; = {"\\n"}
+    in
+        alias find = {&lt;search&gt; &lt;anonymous&gt;}
+    end
+    }
+    Looking at: &#12298;License BSD&#12299; (input pos = 1)
+    No match
+    &#9500;&#9472;&#9472; Expression: {{{"l" / "L"} {"i" / "I"} {"c" / "C"} {"e" / "E"} {"n" / "N"} {"s" / "S"} {"e" / "E"}} ~ license_names}
+    &#9474;   Looking at: &#12298;License BSD&#12299; (input pos = 1)
+    &#9474;   Matched 11 chars
+    &#9474;   &#9500;&#9472;&#9472; Expression: {{"l" / "L"} {"i" / "I"} {"c" / "C"} {"e" / "E"} {"n" / "N"} {"s" / "S"} {"e" / "E"}}
+    &#9474;   &#9474;   Looking at: &#12298;License BSD&#12299; (input pos = 1)
+    &#9474;   &#9474;   Matched 7 chars
+    &#9474;   &#9500;&#9472;&#9472; Expression: ~
+    &#9474;   &#9474;   Looking at: &#12298; BSD&#12299; (input pos = 8)
+    &#9474;   &#9474;   Matched 1 chars
+    &#9474;   &#9492;&#9472;&#9472; Expression: license_names
+    &#9474;       Looking at: &#12298;BSD&#12299; (input pos = 9)
+    &#9474;       Matched 3 chars
+    &#9474;       &#9492;&#9472;&#9472; Expression: {{{"M" / "m"} {"I" / "i"} {"T" / "t"}} / {{"A" / "a"} {"p" / "P"} {"a" / "A"} {"c" / "C"} {"h" / "H"} {"e" / "E"}} / {{"B" / "b"} {"S" / "s"} {"D" / "d"}}}
+    &#9474;           Looking at: &#12298;BSD&#12299; (input pos = 9)
+    &#9474;           Matched 3 chars
+    &#9474;           &#9500;&#9472;&#9472; Expression: {{"M" / "m"} {"I" / "i"} {"T" / "t"}}
+    &#9474;           &#9474;   Looking at: &#12298;BSD&#12299; (input pos = 9)
+    &#9474;           &#9474;   No match
+    &#9474;           &#9500;&#9472;&#9472; Expression: {{"A" / "a"} {"p" / "P"} {"a" / "A"} {"c" / "C"} {"h" / "H"} {"e" / "E"}}
+    &#9474;           &#9474;   Looking at: &#12298;BSD&#12299; (input pos = 9)
+    &#9474;           &#9474;   No match
+    &#9474;           &#9492;&#9472;&#9472; Expression: {{"B" / "b"} {"S" / "s"} {"D" / "d"}}
+    &#9474;               Looking at: &#12298;BSD&#12299; (input pos = 9)
+    &#9474;               Matched 3 chars
+    &#9474;               &#9500;&#9472;&#9472; Expression: {"B" / "b"}
+    &#9474;               &#9474;   Looking at: &#12298;BSD&#12299; (input pos = 9)
+    &#9474;               &#9474;   Matched 1 chars
+    &#9474;               &#9500;&#9472;&#9472; Expression: {"S" / "s"}
+    &#9474;               &#9474;   Looking at: &#12298;SD&#12299; (input pos = 10)
+    &#9474;               &#9474;   Matched 1 chars
+    &#9474;               &#9492;&#9472;&#9472; Expression: {"D" / "d"}
+    &#9474;                   Looking at: &#12298;D&#12299; (input pos = 11)
+    &#9474;                   Matched 1 chars
+    &#9474;                   &#9500;&#9472;&#9472; Expression: "D"
+    &#9474;                   &#9474;   Looking at: &#12298;D&#12299; (input pos = 11)
+    &#9474;                   &#9474;   Matched 1 chars
+    &#9474;                   &#9492;&#9472;&#9472; Expression: "d"
+    &#9474;                       Not attempted
+    &#9492;&#9472;&#9472; Expression: 
+        grammar
+                alias &lt;search&gt; = {!"\\n" .}*
+                &lt;anonymous&gt; = {"\\n"}
+        in
+                alias find = {&lt;search&gt; &lt;anonymous&gt;}
+        end
+        
+        Looking at: &#12298;&#12299; (input pos = 12)
+        No match
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">~/Projects/dev$ </span></span><span class="comint-highlight-input">rosie test ~/Downloads/licence.rpl</span>
+/Users/jjennings/Downloads/licence.rpl
+      line 31  FAILED: licenses did not accept "MIT license"
+      line 31  FAILED: licenses did not accept "Apache LICENSE"
+      line 31  FAILED: licenses did not accept "License BSD"
+  Tests: 3  Errors: 0  Failures: 3  Blocked: 0  Passed: 0
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">~/Projects/dev$ </span></span><span class="comint-highlight-input">rosie test ~/Downloads/licence.rpl</span>
+/Users/jjennings/Downloads/licence.rpl
+  All 3 tests passed
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">~/Projects/dev$ </span></span><span class="comint-highlight-input">rosie test ~/Downloads/licence.rpl</span>
+/Users/jjennings/Downloads/licence.rpl
+  All 6 tests passed
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">~/Projects/dev$ </span></span><span class="comint-highlight-input">rosie test ~/Downloads/licence.rpl</span>
+/Users/jjennings/Downloads/licence.rpl
+  All 7 tests passed
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">~/Projects/dev$ </span></span><span class="comint-highlight-input">rosie test ~/Downloads/licence.rpl</span>
+/Users/jjennings/Downloads/licence.rpl
+  All 8 tests passed
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">~/Projects/dev$ </span></span><span class="comint-highlight-input">rosie test ~/Downloads/licence.rpl</span>
+/Users/jjennings/Downloads/licence.rpl
+  All 9 tests passed
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">~/Projects/dev$ </span></span><span class="comint-highlight-input">rosie test ~/Downloads/licence.rpl</span>
+/Users/jjennings/Downloads/licence.rpl
+  All 9 tests passed
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">~/Projects/dev$ </span></span><span class="comint-highlight-input">rosie test ~/Downloads/licence.rpl</span>
+/Users/jjennings/Downloads/licence.rpl
+  All 10 tests passed
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">~/Projects/dev$ </span></span><span class="comint-highlight-input">rosie test ~/Downloads/licence.rpl</span>
+/Users/jjennings/Downloads/licence.rpl
+      line 37  FAILED: license did not accept "\n\n/*\nMIT license\n*/\n"
+  Tests: 10  Errors: 0  Failures: 1  Blocked: 0  Passed: 9
+<span class="comint-highlight-prompt"><span class="comint-highlight-prompt">~/Projects/dev$ </span></span><span class="comint-highlight-input">rosie test ~/Downloads/licence.rpl</span>
+/Users/jjennings/Downloads/licence.rpl
+  All 10 tests passed
+<span class="comint-highlight-prompt">~/Projects/dev$ </span></pre>
+  </body>
+</html>

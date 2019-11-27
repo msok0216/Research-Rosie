@@ -1,0 +1,28 @@
+{"type": "java_license", 
+ "s": 1, 
+ "e": 279, 
+ "subs": 
+   [{"type": "find.*", 
+     "s": 1, 
+     "e": 279, 
+     "subs": 
+       [{"type": "license.license", 
+         "s": 3, 
+         "e": 279, 
+         "subs": 
+           [{"type": "license.licenses", 
+             "s": 207, 
+             "e": 279, 
+             "subs": 
+               [{"type": "license.license_names", 
+                 "s": 215, 
+                 "e": 218, 
+                 "data": "MIT"}, 
+                {"type": "license.find.*", 
+                 "s": 278, 
+                 "e": 279, 
+                 "data": "\n"}], 
+             "data": "LICENSE MIT License (https://opensource.org/licenses/mit-license.html)\r\n"}], 
+         "data": "  -*- Mode: Java//l; -*-                                                  \r\n \r\n *  foo.java\r\n * \r\n   AUTHOR: Jamie A. Jennings <foobar@mit.edu>\r\n *  © Copyright 2019\r\n        Jamie A. Jennings 2222\r\n *  LICENSE MIT License (https://opensource.org/licenses/mit-license.html)\r\n"}], 
+     "data": "/*  -*- Mode: Java//l; -*-                                                  \r\n \r\n *  foo.java\r\n * \r\n   AUTHOR: Jamie A. Jennings <foobar@mit.edu>\r\n *  © Copyright 2019\r\n        Jamie A. Jennings 2222\r\n *  LICENSE MIT License (https://opensource.org/licenses/mit-license.html)\r\n"}], 
+ "data": "/*  -*- Mode: Java//l; -*-                                                  \r\n \r\n *  foo.java\r\n * \r\n   AUTHOR: Jamie A. Jennings <foobar@mit.edu>\r\n *  © Copyright 2019\r\n        Jamie A. Jennings 2222\r\n *  LICENSE MIT License (https://opensource.org/licenses/mit-license.html)\r\n"}

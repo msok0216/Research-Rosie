@@ -1,0 +1,37 @@
+{"s": 1, 
+ "e": 93, 
+ "data": "#author: marcus Kim\r\n#copyright: NCSU\r\n#MIT License\r\n\"\"\"\r\n    Author: Marcus\r\n    Copyright:", 
+ "subs": 
+   [{"s": 1, 
+     "e": 93, 
+     "data": "#author: marcus Kim\r\n#copyright: NCSU\r\n#MIT License\r\n\"\"\"\r\n    Author: Marcus\r\n    Copyright:", 
+     "subs": 
+       [{"s": 2, 
+         "e": 92, 
+         "data": "author: marcus Kim\r\n#copyright: NCSU\r\n#MIT License\r\n\"\"\"\r\n    Author: Marcus\r\n    Copyright", 
+         "subs": 
+           [{"s": 23, 
+             "e": 52, 
+             "data": "copyright: NCSU\r\n#MIT License", 
+             "subs": 
+               [{"s": 41, 
+                 "e": 52, 
+                 "data": "MIT License", 
+                 "subs": 
+                   [{"s": 41, 
+                     "e": 44, 
+                     "data": "MIT", 
+                     "type": "copyright.name_part"}, 
+                    {"s": 45, 
+                     "e": 52, 
+                     "data": "License", 
+                     "type": "copyright.name_part"}], 
+                 "type": "copyright.name"}], 
+             "type": "copyright.find.*"}, 
+            {"s": 83, 
+             "e": 92, 
+             "data": "Copyright", 
+             "type": "copyright.find.*"}], 
+         "type": "copyright.find_copyright"}], 
+     "type": "find.*"}], 
+ "type": "python_copyright"}

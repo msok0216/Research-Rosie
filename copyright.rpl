@@ -1,0 +1,11 @@
+-- This file
+package copyright
+local year = [0-9]{4}
+local name_part = [[\-.] [:alpha:]]+
+name = {name_part {[ ] name_part}+ }
+
+local c = find:ci:"copyright" (find:year)? (find:name)? (find:year)?
+--copyright = find:ci:"copyright"
+copyright = find:c
+--only print out the words that contain copyright information
+find_copyright = findall:{ci:"copyright" (find:year)? (find:name)? (find:year)?}

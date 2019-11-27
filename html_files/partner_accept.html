@@ -1,0 +1,18 @@
+{% extends "admin_base.html" %}
+{% load crispy_forms_tags %}
+{% block base_content %}
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Accept Partner: {{partner_name}}</h1>
+    </div>
+</div>
+<div class="row" align="center">
+    <div class="col-lg-12">
+        <p>Accepting {{partner_name}} registration will send an automatic email to the partner, notifying that we'll contact them in the near future</p>
+    </div>
+</div>
+<div align="center">
+{% crispy form form.helper %}
+</div>
+    <br/>
+{% endblock %}

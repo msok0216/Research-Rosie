@@ -1,0 +1,479 @@
+{% extends "admin_base.html" %}
+{% load staticfiles admin_tags %}
+
+{% block base_content %}
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">AutoMatch 
+            <span data-toggle='tooltip' title="Click to learn more about the AutoMatch process">
+                <a data-toggle="modal" data-target="#automatchModal" >
+                    <i class="fa fa-question-circle" style="font-size:20px" id="modal-help"></i>
+                </a>
+            </span>
+        </h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <a class="btn btn-danger finalize-assignments-link" href="#">Finalize Assignments</a>
+        <a class="btn btn-danger reset-assignments-link" href="#">Reset Assignments</a>
+        <a class="btn btn-primary assign-meet-ids-link" href="#">Assign Meet IDs</a>
+    </div>
+</div>
+<br/>
+<div style='background-color:white'>
+
+    <table class="table table-striped table-bordered">
+        <tr>
+            <th width="30%">Partner</th><th>Volunteers</th>
+        </tr> 
+        {% for partner in assignments %}
+            <tr>
+                <td><b>{{partner.name}}</b>&nbsp&nbsp(Meet: {{partner.meet_id}})<br/>
+                    <div class='progress' style='height:10px;margin-bottom:5px'>
+                        {% get_bar_color partner.percent as color %}
+                       <div class='progress-bar {{color}}' style='width: {{partner.percent}}%;'></div>
+                        <div class="progress-bar progress-bar-primary" style="width: {{partner.min_percent}}%;">
+                            <span class="sr-only">Min volunteers required</span>
+                        </div>
+                    </div>
+                    {{partner.num_vols}} of {{partner.min_volunteers}}-{{partner.max_volunteers}} volunteers<br/>
+
+                    <a href="{% url 'partner_detail_url' pk=partner.pk %}" data-toggle="tooltip" title="Go to partner page">More Info</a><br/>                    
+                </td>
+                <td>
+                    <!--List the groups -->
+                    {% for volunteergroup in partner.groups %}
+                        <span class='row col-md-12'>
+                            <div class='col-md-5 pop leader' data-content='{{volunteergroup.description}}'>
+                                    <a href="{% url 'group_detail_url' pk=volunteergroup.pk %}" data-toggle="tooltip" title="Go to volunteer group page">{{volunteergroup.name}}</a>
+                            </div>
+                            <div class='col-md-3'>({{volunteergroup.num_volunteers}} volunteers)</div>
+                            <div class='col-md-3 col-md-offset-1'>
+                                <div class="btn-group">
+                                {% if volunteergroup.partner != None %}
+                                    <button type="button" class="btn btn-default unlock-link pop" href='#' data-content='Unlock' data-sr-isgroup='1' data-sr-id='{{volunteergroup.pk}}' data-sr-name='{{volunteergroup.name}}' data-sr-partner='{{partner.pk}}' data-sr-partner-name='{{partner.name}}'><span class="glyphicon glyphicon-check" style="color:green"></span></button>
+                                {% else %}
+                                    <button type="button" class="btn btn-default lock-link pop" href='#' data-content='Lock' data-sr-isgroup='1' data-sr-id='{{volunteergroup.pk}}' data-sr-name='{{volunteergroup.name}}' data-sr-partner='{{partner.pk}}' data-sr-partner-name='{{partner.name}}'><span class="glyphicon glyphicon-unchecked" style="color:gray"></span></button>
+                                {% endif %}
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a class='move-link' href='#' data-sr-isgroup='1' data-sr-id='{{volunteergroup.pk}}' data-sr-name='{{volunteergroup.name}}'>Move Group</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </span>
+                    {% endfor %}
+                    <!-- List the individuals -->
+                    {% for volunteer in partner.volunteers %}
+                        {% if not volunteer.group %}
+                            <span class='row col-md-12'>
+                                <div class='col-md-5 pop ' data-content='{{volunteer.otherinfo}}'>
+                                    {% if partner.leader == volunteer %}
+                                        <a href='{% url "leader_detail_url" pk=volunteer.pk %}' data-toggle="tooltip" title="Go to site leader page"><b>{{volunteer.first_name}} {{volunteer.last_name}}</b></a>
+                                    {% else %}
+                                        <a href='{% url 'volunteer_detail_url' pk=volunteer.pk %}' data-toggle="tooltip" title="Go to volunteer page">{{volunteer.first_name}} {{volunteer.last_name}}</a>
+                                    {% endif %}
+                                </div>
+                                <div class='col-md-3'></div>
+                                <div class='col-md-3 col-md-offset-1'>
+                                    <div class="btn-group">
+                                        {% if partner.leader == volunteer %}
+                                            <span class="btn btn-default leader-btn"><span class="glyphicon glyphicon-check" style="color:green"></span></span>
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <span class="caret"></span>
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a class='move-leader-link' href='#' data-sr-id='{{volunteer.pk}}' data-sr-name='{{volunteer.first_name}} {{volunteer.last_name}}'>Move Leader</a></li>
+                                            </ul>
+                                        {% else %}
+                                            {% if volunteer.partner != None %}
+                                                <button type="button" class="btn btn-default unlock-link pop" href='#' data-content='Unlock' data-sr-type='individual' data-sr-id='{{volunteer.pk}}' data-sr-group-id='-1' data-sr-name='{{volunteer.first_name}} {{volunteer.last_name}}' data-sr-partner='{{partner.pk}}' data-sr-partner-name='{{partner.name}}'><span class="glyphicon glyphicon-check" style="color:green"></span></button>
+                                            {% else %}
+                                                <button type="button" class="btn btn-default lock-link pop" href='#' data-content='Lock' data-sr-type='individual' data-sr-id='{{volunteer.pk}}' data-sr-group-id='-1' data-sr-name='{{volunteer.first_name}} {{volunteer.last_name}}' data-sr-partner='{{partner.pk}}' data-sr-partner-name='{{partner.name}}'><span class="glyphicon glyphicon-unchecked" style="color:gray"></span></button>
+                                            {% endif %}
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <span class="caret"></span>
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a class='move-link' href='#' data-sr-type='individual' data-sr-id='{{volunteer.pk}}' data-sr-name='{{volunteer.first_name}} {{volunteer.last_name}}'>Move Volunteer</a></li>
+                                                <li class="divider"></li>
+                                                <li><a class='make-leader-link' href='#' data-sr-id='{{volunteer.pk}}' data-sr-group-id='-1' data-sr-name='{{volunteer.first_name}} {{volunteer.last_name}}' data-sr-partner='{{volunteer.partner.pk}}'>Make Site Leader</a></li>
+                                            </ul>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </span>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}        
+    </table>
+
+    <h3>Unassigned Groups</h3>
+    <table class="table table-striped table-bordered">
+        <tr><th width="30%">Group</th><th>Num Volunteers</th><th>Action</th></tr>
+        {% for group in unassigned_groups %} 
+        <tr>
+            <td><b><a href='{% url "group_detail_url" pk=group.pk %}' data-toggle="tooltip" title="Go to volunteer group page">{{group.name}}</a></b></td>
+            <td>{{group.num_volunteers}}</td>
+            <td><a class='move-link' href='#' data-sr-isgroup='1' data-sr-id='{{group.id}}' data-sr-name='{{group.name}}' data-toggle="tooltip" title="Assign to partner">(move)</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>Unassigned Individuals</h3>
+    <table class="table table-striped table-bordered">
+        <tr>
+            <th width="77%">Name</th><th>Action</th><!--77% to match the auto formatting of the chart above-->
+        </tr>
+        {% for volunteer in unassigned_volunteers %}
+        <tr>
+            <td><a href='{% url 'volunteer_detail_url' pk=volunteer.pk %}' data-toggle="tooltip" title="Go to volunteer page">{{volunteer.first_name}}{{volunteer.last_name}}</a></td>
+            <td><a class='move-link' href='#' data-sr-type='individual' data-sr-id='{{volunteer.pk}}' data-sr-name='{{volunteer.name}}' data-toggle="tooltip" title="Assign to partner">(move)</a></td>
+        </tr>
+        {% endfor %}
+        <tr>
+    </table>
+
+    </br>
+
+</div>
+
+<div id="move-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="move" method="POST" action="{% url 'automatch_move_url' %}">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3 id="move-modal-label">Change Partner</h3>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Moving: <b><span id="move-name"></span></b>.<br/>
+                        Partner name: <div><input type="text" autocomplete="off" name="partner_name" id="partner-names" class="typeahead"></div><br/>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <input type="submit" class="btn btn-primary" value="Move">
+                </div>
+                <input type="hidden" id="is-group" name="is_group"/>
+                <input type="hidden" id="pk" name="pk"/>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="move-leader-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="move-leader" method="POST" action="{% url 'automatch_move_leader_url' %}">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">x</button>
+                    <h3 id="move-leader-modal-label">Move Leader</h3>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Moving: <b><span id="move-leader-name"></span></b><br/>
+                        Partner name (only showing those without leaders assigned): <div><input type="text" autocomplete="off" name="partner_name" id="leaderless-partner-names" class="typeahead"></div><br/>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <input type="submit" class="btn btn-primary" value="Move"></input>
+                </div>
+                <input type="hidden" id="pk" name="pk"/>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="finalize-assignments-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="finalize-assignments" method="POST" action="{% url 'automatch_finalize_url' %}">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3 id="finalize-assignments-modal-label">Finalize Assignments</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to finalize the assignments of the groups and volunteers to their partners.</p>
+                    <p>This means the volunteers and groups will be assigned as they are shown, and they will be locked.</p>
+                    <p>You should only do this after all registration is complete and special accomodations have been made for those who want a specific assignment</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <input type="submit" class="btn btn-danger" value="Finalize">
+                </div>
+                <input type="hidden" id="pk" name="pk"/>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="reset-assignments-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="reset-assignments" method="POST" action="{% url 'automatch_reset_url' %}">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3 id="reset-assignments-modal-label">Reset Assignments</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to reset the assignments of the groups and volunteers to their partners.</p>
+                    <p>This means the volunteers and groups will be unlocked in their assignments, and the page will reload automatically assigning them to potentially different partners.</p>
+                    <p>Take extreme care when doing this because if you have already sent assignment information to the volunteers or groups, that information will become incorrect.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <input type="submit" class="btn btn-danger" value="Reset">
+                </div>
+                <input type="hidden" id="pk" name="pk"/>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="assign-meet-ids-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="assign-meet-ids" method="POST" action="{% url 'automatch_assign_meet_ids_url' %}">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3 id="assign-meet-ids-modal-label">Assign Meet IDs</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to assign the Meet IDs to the partners?</p>
+                    <p>This will assign a number from largest to smallest partner to help volunteers find their cohort the day of the event.</p>
+                    <p>If there are already Meet IDs for the partners, don't reassign them.</p>  
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <input type="submit" class="btn btn-danger" value="Assign">
+                </div>
+                <input type="hidden" id="pk" name="pk"/>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="automatchModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">The AutoMatch Process</h4>
+        </div>
+        <div class="modal-body">
+            <p>The instructions below describe how to use the AutoMatch page. <b>Please make sure that both volunteer registration and partner
+                registration have ended before doing the following:</b>
+            </p>
+            <ol>
+                <li><b>Assign Meet IDs </b>- This assigns a unique ID to each partner so that volunteers and groups can find their partners
+                    more easily on event day.
+                </li>
+                <li><b>Reset Assignments </b> - This assigns volunteers and groups to partners.</li>
+                <li><b>Satisfy all Special Requests </b> - make sure that all special requests from partners, volunteers, and site leaders
+                have been satisfied before finalizing assignments. </li>
+                <li> <b>Finalize Assignments</b> - Lock all volunteer assignments. The AutoMatch process is complete. Do not use this page again until next year.</li>
+            </ol>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+
+<form id="lock" method="POST" action="{% url 'automatch_lock_url' %}">
+    {% csrf_token %}
+    <input type="hidden" id="is-group" name="is_group"/>
+    <input type="hidden" id="pk" name="pk"/>
+    <input type="hidden" id="partner_pk" name="partner_pk"/>
+</form>
+
+<form id="unlock" method="POST" action="{% url 'automatch_unlock_url' %}">
+    {% csrf_token %}
+    <input type="hidden" id="is-group" name="is_group"/>
+    <input type="hidden" id="pk" name="pk"/>
+</form>
+
+<form id="makeleader" method="POST" action="{% url 'automatch_make_leader_url' %}">
+    {% csrf_token %}
+    <input type="hidden" id="is-group" name="is_group"/>
+    <input type="hidden" id="pk" name="pk"/>
+    <input type="hidden" id="partner_pk" name="partner_pk"/>
+</form>
+{% endblock base_content %}
+
+{% block extra_css %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/automatch.css' %}">
+{% endblock extra_css %}
+
+{% block extra_js %}
+<script src="{% static 'js/typeahead.bundle.min.js' %}"></script>
+<script>
+
+function moveVolunteer(volunteerID, isGroup, volunteerName) {
+    $("#move #is-group").val(isGroup);
+    $("#move #pk").val(volunteerID);
+    $("#move #move-name").html(volunteerName);
+    $("#move-modal").modal();
+}
+
+function lockVolunteer(volunteerID, isGroup, partnerID) {
+    $('#lock #is-group').val(isGroup);
+    $("#lock #pk").val(volunteerID);
+    $('#lock #partner_pk').val(partnerID);
+    $('#lock').submit();
+}
+
+function unlockVolunteer(volunteerID, isGroup) {
+    $('#unlock #is-group').val(isGroup);
+    $("#unlock #pk").val(volunteerID);
+    $('#unlock').submit();
+}
+
+function makeLeader(volunteerID, partnerID) {
+    $('#makeleader #pk').val(volunteerID);
+    $('#makeleader #partner_pk').val(partnerID);
+    $('#makeleader').submit();
+}
+
+function moveLeader(leaderID, leaderName){
+    $("#move-leader #pk").val(leaderID);
+    $("#move-leader #move-leader-name").html(leaderName);
+    $("#move-leader-modal").modal();
+}
+
+function finalizeAssignments() {
+    $("#finalize-assignments-modal").modal();
+}
+
+function resetAssignments() {
+    $("#reset-assignments-modal").modal();
+}
+
+function assignMeetIds() {
+    $("#assign-meet-ids-modal").modal();
+}
+
+$(function() {
+
+    // constructs the suggestion engine
+    var partners = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+            limit: 10,
+        prefetch: {
+            // url points to a json file that contains an array of names
+            url: "{% url 'partner_json_url' %}",
+            ttl: 1200000,
+            // the json file contains an array of strings, but the Bloodhound
+            // suggestion engine expects JavaScript objects so this converts all of
+            // those strings
+            filter: function(list) {
+                return $.map(list, function(x) { return { name: x }; });
+            }
+        }
+    });
+        partners.clearPrefetchCache();
+        partners.initialize();
+        $('#partner-names').typeahead(null,
+        {
+        name: 'partners',
+        displayKey: 'name',
+        // `ttAdapter` wraps the suggestion engine in an adapter that
+        // is compatible with the typeahead jQuery plugin
+        source: partners.ttAdapter()
+    });
+
+    // constructs the suggestion engine
+    var leaderlessPartners = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+            limit: 10,
+        prefetch: {
+            // url points to a json file that contains an array of names
+            url: "{% url 'partner_leaderless_json_url' %}",
+            ttl: 1200000,
+            // the json file contains an array of strings, but the Bloodhound
+            // suggestion engine expects JavaScript objects so this converts all of
+            // those strings
+            filter: function(list) {
+                return $.map(list, function(x) { return { name: x }; });
+            }
+        }
+    });
+        leaderlessPartners.clearPrefetchCache();
+        leaderlessPartners.initialize();
+        $('#leaderless-partner-names').typeahead(null,
+        {
+        name: 'leaderlessPartners',
+        displayKey: 'name',
+        // `ttAdapter` wraps the suggestion engine in an adapter that
+        // is compatible with the typeahead jQuery plugin
+        source: leaderlessPartners.ttAdapter()
+    });
+
+    $(".partner_detail").hide();
+
+    $(".move-link").click(function()
+    {
+        moveVolunteer($(this).data("sr-id"), $(this).data("sr-isgroup"), $(this).data("sr-name"));
+    });
+    $(".lock-link").click(function()
+    {
+        lockVolunteer($(this).data("sr-id"), $(this).data("sr-isgroup"), $(this).data("sr-partner"));
+    });
+    $(".unlock-link").click(function()
+    {
+        unlockVolunteer($(this).data("sr-id"), $(this).data("sr-isgroup"));
+    });
+    $(".make-leader-link").click(function()
+    {
+        makeLeader($(this).data("sr-id"), $(this).data("sr-partner"));
+    });
+    $(".move-leader-link").click(function()
+    {
+        moveLeader($(this).data("sr-id"), $(this).data("sr-name"));
+    });
+    $(".finalize-assignments-link").click(function()
+    {
+        finalizeAssignments();
+    });
+    $(".reset-assignments-link").click(function()
+    {
+        resetAssignments();
+    });
+    $(".assign-meet-ids-link").click(function()
+    {
+        assignMeetIds();
+    });
+    $('body').popover({
+        selector: '.pop',
+        trigger: 'hover'
+    });
+});
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
+</script>
+{% endblock extra_js %}
+
+

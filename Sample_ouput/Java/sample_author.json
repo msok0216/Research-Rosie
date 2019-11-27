@@ -1,0 +1,28 @@
+{"type": "java_author", 
+ "data": "/*  -*- Mode: Java//l; -*-                                                  \r\n \r\n *  foo.java\r\n * \r\n   AUTHOR: Jamie A. Jennings <foobar@mit.edu>\r", 
+ "subs": 
+   [{"type": "find.*", 
+     "data": "/*  -*- Mode: Java//l; -*-                                                  \r\n \r\n *  foo.java\r\n * \r\n   AUTHOR: Jamie A. Jennings <foobar@mit.edu>\r", 
+     "subs": 
+       [{"type": "author.find_author", 
+         "data": "  -*- Mode: Java//l; -*-                                                  \r\n \r\n *  foo.java\r\n * \r\n   AUTHOR: Jamie A", 
+         "subs": 
+           [{"type": "author.find.*", 
+             "data": "AUTHOR: Jamie A", 
+             "subs": 
+               [{"type": "author.author_info", 
+                 "data": "Jamie", 
+                 "e": 117, 
+                 "s": 112}, 
+                {"type": "author.author_info", 
+                 "data": "A", 
+                 "e": 119, 
+                 "s": 118}], 
+             "s": 104, 
+             "e": 119}], 
+         "s": 3, 
+         "e": 119}], 
+     "s": 1, 
+     "e": 147}], 
+ "s": 1, 
+ "e": 147}

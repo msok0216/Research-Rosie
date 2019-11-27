@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load cms_tags %}
+
+{% block base_content %}
+  {% static_placeholder "activategood" %}
+  <div style="text-align: center">
+      <form id="agForm" action="http://www.activategood.org/register" target="_blank">
+        <input type="hidden" name="f" value="{{ volunteer.first_name }}"/>
+        <input type="hidden" name="l" value="{{ volunteer.last_name }}"/>
+        <input type="hidden" name="e" value="{{ volunteer.email }}"/>
+        <input type="hidden" name="p" value="{{ volunteer.phone }}"/>
+        <input type="hidden" name="r" value="14"/>
+        <input type="submit" value="Take me to ActivateGood" class="btn btn-primary"/>
+        <a href="{% url 'volunteer_register_success_url' %}" class="btn">No thanks</a>
+      </form>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+    $("#agForm").submit(function() {
+        setTimeout(function() {
+          window.location.href = "{% url 'volunteer_register_success_url' %}";
+        }, 500);
+          this.submit();
+      });
+    </script>
+{% endblock %}

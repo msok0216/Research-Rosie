@@ -1,0 +1,25 @@
+package html
+
+local html_tag_beginning = "<div"
+local html_tag_end = "</input>"
+local table = "<table"
+local tableRowStart = "<tr"
+local tableRowEnd = "</tr>"
+local tableHeaderStart = "<th"
+local tableHeaderEnd = "</th>"
+local tableDataBegin = "<td"
+local tableDataEnd = "</td>"
+
+
+html_search = find:html_tag_beginning
+
+
+-- how to get the content between two marking points?
+content = [:alpha:]+
+header = find: {tableRowStart find:tableHeaderStart content find:tableHeaderEnd}
+
+data = find: {tableRowStart find:tableDataBegin content find:tableDataEnd}
+
+table_data = find:{ [ ]* table }
+
+test = findall:{tableHeaderStart .* find:tableRowStart}

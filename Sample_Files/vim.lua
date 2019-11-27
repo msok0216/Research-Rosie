@@ -40,6 +40,7 @@
 local function _system(cmd)
     local out = vim.api.nvim_call_function('system', { cmd })
     local err = vim.api.nvim_get_vvar('shell_error')
+    s.lua
     return err, out
   end
   

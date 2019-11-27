@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load cms_tags %}
+
+{% block base_content %}
+    {% static_placeholder "volunteer_cancel_confirm" %}
+    {% crispy form form.helper %}
+{% endblock %}

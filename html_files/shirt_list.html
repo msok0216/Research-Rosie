@@ -1,0 +1,61 @@
+{% extends "admin_base.html" %}
+
+{% block base_content %}
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Shirts</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<br/>
+<div style='background-color:white'>
+
+
+    <h3>All Volunteers</h3>
+    <p>These t-shirt counts reflect the total number of registered volunteers, including all those who may become leaders.</p>
+    <br/>
+    <table class='table table-striped table-bordered'>
+        <tr><th>Size</th><th>Current Count</th><th>Estimated</th></tr>
+        {% for size, count, estimate in size_counts %}
+            <tr><td>{{size}}</td><td>{{count}}</td><td>{{estimate}}</td></tr>
+        {% endfor %}
+        <tr><th>Total:</th><th>{{volunteers}}</th><th>{{est_total}}</th></tr>
+    </table>
+
+    <hr/>
+    <h3>Site Leaders</h3>
+    <p>These t-shirt counts reflect only assigned site leaders.</p>
+    <br/>
+    <table class='table table-striped table-bordered'>
+        <tr><th>Size</th><th>Count</th></tr>
+        {% for size, count in leader_size_counts %}
+            <tr><td>{{size}}</td><td>{{count}}</td></tr>
+        {% endfor %}
+        <tr><th>Total:</th><th>{{leader_total}}</th></tr>
+    </table>
+
+    <hr/>
+    <h3>Shirts by Partner Site</h3>
+    <p>Approved partners only</p>
+    <br/>
+    <table class='table table-striped table-bordered' id='partner_list'>
+        <tr><th>Leader</th><th>Meet ID</th><th>Partner</th><th>S</th><th>M</th><th>L</th><th>XL</th><th>XXL</th><th>XXXL</th><th>Total</th><th>Leader</th></tr>
+        {% for partner in partner_data %}
+        <tr>
+            <td>{{ partner.leader }}</td>
+            <td>{{ partner.meet_id }}</td>
+            <td>{{ partner.name }}</td>
+            <td>{{ partner.S }}</td>
+            <td>{{ partner.M }}</td>
+            <td>{{ partner.L }}</td>
+            <td>{{ partner.XL }}</td>
+            <td>{{ partner.XXL }}</td>
+            <td>{{ partner.XXXL }}</td>
+            <td>{{ partner.total }}</td>
+            <td>{{ partner.leader.get_shirt_size_display }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div style="height:10px"></div>
+</div>
+{% endblock base_content %}

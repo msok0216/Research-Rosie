@@ -1,0 +1,35 @@
+-- 
+-- Use these patterns with -w on the command line to read the whole file!
+-- 
+
+package codemeta
+
+-- Need to look for EITHER "license" OR a newline, whichever comes first.
+alias license_search = { ![\n] !ci:"license" .}*
+
+-- Assume we are positioned at the word "license" (case-insensitive), Capture it
+-- and everything up until a newline.
+license_text = {ci:"license" [^\n]*}
+
+-- The pattern 'license' will succeed only when we find the word "license" on
+-- the current line, otherwise it will fail.
+alias capture_license = { license_search license_text }
+
+alias lua_comment_start = "--"
+alias python_comment_start = "#"
+alias c_line_comment_start = "//"
+
+alias line_comment_end = "\n"
+
+alias c_block_comment_start = "/*" 
+alias c_block_comment_end = "*/" 
+alias c_block_comment = { c_block_comment_start find:c_block_comment_end }
+
+alias lua_license = { lua_comment_start [ ]* capture_license }
+alias python_license = { python_comment_start [ ]* capture_license }
+alias c_license = { c_line_comment_start [ ]* capture_license } /
+		  { c_block_comment_start [ ]* capture_license find:c_block_comment_end }
+
+license = findall:{ lua_license / c_license / python_license }
+
+

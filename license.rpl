@@ -1,0 +1,32 @@
+-- -*- Mode: rpl; -*-                                                               
+--
+-- licence.rpl
+--
+-- © Copyright Jamie A. Jennings 2019.
+-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)
+-- AUTHOR: Jamie A. Jennings
+
+package license
+
+-- This will only work if the rosie command is "match -w" because -w reads the
+-- whole file at once, which we need because java comments can span multiple
+-- lines.
+
+license_names = ci:"MIT" / ci:"Apache" / ci:"BSD" / ci:"Apple" / ci:"Artistic" / ci:"Common" / ci:"Eclipse" / ci:"eCos" / ci:"Boost" / ci:"Eiffel" / ci:"Entessa" / ci:"EU" / ci:"GNU" / ci:"IBM" / ci:"IPA" / ci:"ISC" / ci:"Mozilla" / ci:"NTP"        -- need more!
+
+licenses = {(license_names ci:"license") / (ci:"license" license_names) find:"\n"}
+
+license = find:licenses
+
+local year = [0-9]{4}
+local name_part = [[\-.] [:alpha:]]+
+name = {name_part {[ ] name_part}+ }
+
+local c = find:ci:"copyright" (find:year)? name (find:year)?
+
+copyright = find:c
+
+-- cat !/.rosierc-usual: contains the library in the home directory
+-- rosie config tells you whether the configuration was set-"set by rcfile"
+-- try rosierc file modification to fix the issue
+-- cat ~/.rosierc-usual

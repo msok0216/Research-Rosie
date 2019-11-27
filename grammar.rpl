@@ -1,0 +1,17 @@
+same = table
+grammar
+    alias tableRowStart = "<tr"
+    alias tableHeaderStart = "<th"
+    
+in
+    alias table = "<table"
+end
+
+--nested grammar
+
+data = tableRow
+grammar 
+    alias data = "<td"
+in
+    alias tableRow = "<tr"
+end

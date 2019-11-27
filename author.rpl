@@ -1,0 +1,17 @@
+package author
+local author_line = find:ci:"author"
+
+local name_part = [(":" /[\-]) [:alpha:]+]
+name = {name_part {[ ] name_part} }
+
+--author = {author_line name [^\n]*}
+
+--find:{[ ]* author_line (find:(":" / [ ]*))? name find:"\n"}
+
+--author = find:{ "/*" [ ]* {ci:"author" [^\n]*} find:"*/"}
+author_info = [:alpha:]+
+
+author = {((ci:"author" [ ]* (author_info)?) / ((author_info)? [ ]* ci:"author" ))}
+
+-- find author information without printing out entire block of comments
+find_author = findall:{(ci:"author" [ ]* (":"/"-")? [ ]* (author_info)*) / ((author_info) [ ]* ci:"author") }

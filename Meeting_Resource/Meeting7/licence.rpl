@@ -1,0 +1,40 @@
+-- -*- Mode: rpl; -*-                                                               
+--
+-- licence.rpl
+--
+-- © Copyright Jamie A. Jennings 2019.
+-- LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)
+-- AUTHOR: Jamie A. Jennings
+
+package java
+
+-- This will only work if the rosie command is "match -w" because -w reads the
+-- whole file at once, which we need because java comments can span multiple
+-- lines.
+
+license_names = ci:"MIT" / ci:"Apache" / ci:"BSD"          -- need more!
+
+licenses = {((license_names ci:"license") / (ci:"license" license_names)) find:"\n"}
+
+java_license = "/*" find:licenses find:"*/"
+
+license = find:java_license
+
+local year = [0-9]{4}
+local name_part = [[\-.] [:alpha:]]+
+name = {name_part {[ ] name_part}+ }
+
+local c = "/*" find:ci:"copyright" (find:year)? name (find:year)? find:"*/"
+
+copyright = find:c
+
+-- Use this command to run tests: rosie test <rpl-file-name>
+
+-- test local year accepts "0000"
+
+-- test licenses accepts "MIT license\n", "Apache LICENSE\n", "License BSD\n"
+-- test licenses rejects "GNUGNUGNU license\n", "license\n"
+
+-- test license accepts "/*MIT license\n*/", "/* Apache LICENSE \n*/", "/*\n     License BSD\n\n\n*/"
+-- test license accepts "\n\n/*\nMIT license\n*/"
+

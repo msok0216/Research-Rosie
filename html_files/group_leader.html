@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load cms_tags %}
+
+{% block base_content %}
+	<div id="groupleader">
+		<p> {{ volunteergroup.name }} </p>
+	</div>
+	<div class="well well-sm">
+		<p>
+		<strong>Group leader:</strong> {{ volunteergroup.owner.display_name }} <br>
+		<strong>Group leader Email:</strong> <a href="mailto:{{volunteergroup.owner.email}}"> {{ volunteergroup.owner.email }}</a> <br>
+		<!-- Uses Django's default behavior should display_name return None -->
+		<!-- https://docs.djangoproject.com/en/dev/ref/templates/builtins/#default -->
+		<strong>Volunteer Site:</strong> {{ volunteergroup.partner.display_name|default:"Not yet assigned" }}
+		</p>
+	</div>
+	<div class="panel panel-default">
+  		<div class="panel-heading">Members ({{volunteergroup.num_volunteers}})</div>
+		<table class="table">
+			<tr>
+				<th>Name</th>
+				<th>email</th>
+			</tr>
+   			{% for volunteer in list %}
+   			<tr>
+   				<td>{{ volunteer.display_name }}</td>
+   				<td><a href="mailto:{{volunteer.email}}">{{volunteer.email}}</a></td>
+   			</tr>
+			{% endfor %}
+  		</table>
+	</div>
+	
+	<div class="well well-lg">
+		<a href="mailto:
+			{% for volunteer in list %}
+   				{{volunteer.email}},
+			{% endfor %}
+		">Mail All</a>
+	</div>
+	<br>
+{% endblock %}

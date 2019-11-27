@@ -1,0 +1,172 @@
+{% extends "admin_base.html" %}
+{% load cms_tags %}
+
+{% block base_content %}
+</br>
+</br>
+</br>
+</br>
+<div class="row">
+	<div class="col-lg-8 col-lg-offset-2 ">
+		<center><h3> Welcome to the Service Raleigh E-Mail Control Page! </h3>
+
+		<p>Clicking a link will take you to a confirmation page with a preview of the email.</br>
+			Anything in the format <code>*|...|*</code> is a field that will be populated for every recipient
+		</p>
+		</center>
+	</div>
+</div>
+</br>
+</br>
+<div class="row">
+	<div class="well col-lg-4">
+		<center>
+			<h3>Email Stats</h3>
+		</center>
+		<table class="table" width="100%">
+			<tbody>
+				<tr>
+					<td>Backlog</td>
+					<td style="padding-left:25px;">{{ backlog }}</td>
+				</tr>
+				<tr class="info">
+					<td>Hourly Quota</td>
+					<td style="padding-left:25px;">{{ quota }}</td>
+				</tr>
+				<tr>
+					<td>Sent Today</td>
+					<td style="padding-left:25px;">{{ sent_today }}</td>
+				</tr>
+				<tr class="info">
+					<td>Tests Sent Today</td>
+					<td style="padding-left:25px;">{{ tests_sent_today }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="col-lg-8">
+		<div role="tabpanel">
+			<ul class="nav nav-tabs nav-justified" role="tablist" >
+				<li role="presentation" class="active"><a href="#utilities" aria-controls="utilities" role="tab" data-toggle="tab" style="padding-top:25px">Digital Stationary
+				</a></li>
+				<li role="presentation"><a href="#group" aria-controls="group" role="tab" data-toggle="tab">Group Reminders</a></li>
+				<li role="presentation"><a href="#leader" aria-controls="leader" role="tab" data-toggle="tab">Leader Emails</a></li>
+				<li role="presentation"><a href="#volunteer" aria-controls="volunteer" role="tab" data-toggle="tab">Volunteer Emails</a></li>
+				<li role="presentation"><a href="#partner" aria-controls="partner" role="tab" data-toggle="tab">Partner Emails</a></li>
+			</ul>
+
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="utilities">
+					<table class="table table-striped" width="100%">
+						<tbody>
+							<tr>
+								<td><a href="{% url 'email_compose_url' %}">Compose Email</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="group">
+					<table class="table table-striped" width="100%">
+						<tbody>
+							<tr>
+								<td>
+									<a href="{% url 'email_detail_url' email_name="group-reminder-1" %}">Group Reminder 1</a>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="{% url 'email_test_url' email_name="group-creator-confirm" %}">Test Group Creator Confirmation Email</a>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="{% url 'email_test_url' email_name="group-member-confirm" %}">Test Group Member Confirmation Email</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="leader">
+					<table class="table table-striped" width="100%">
+						<tbody>
+							<tr>
+								<td>
+									<a href="{% url 'email_test_url' email_name="leader-confirm" %}">Test Leader Confirmation Email</a>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="{% url 'email_test_url' email_name="leader-accept" %}">Test Leader Accept Email</a>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="{% url 'email_test_url' email_name="leader-deny" %}">Test Leader Deny Email</a>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="{% url 'email_detail_url' email_name="leader-contact-1" %}">Leader Contact 1</a></td>
+							</tr>
+							<tr>
+								<td><a href="{% url 'email_detail_url' email_name="leader-contact-2" %}">Leader Contact 2</a></td>
+							</tr>
+							<tr>
+								<td><a href="{% url 'email_detail_url' email_name="site-leader-rain" %}">Site Leader Rain Email</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="volunteer">
+					<table class="table table-striped" width="100%">
+						<tbody>
+							<tr>
+								<td><a href="{% url 'email_test_url' email_name="individual-confirm" %}">Test Individual Confirmation Email</a></td>
+							</tr>
+							<tr>
+								<td><a href="{% url 'email_detail_url' email_name="volunteer-contact-1" %}">Volunteer Contact 1</a></td>
+							</tr>
+							<tr>
+								<td><a href="{% url 'email_detail_url' email_name="volunteer-contact-2" %}">Volunteer Contact 2</a></td>
+							</tr>
+							<tr>
+								<td><a href="{% url 'email_test_url' email_name="volunteer-cancel" %}">Test Volunteer Cancel</a></td>
+							</tr>
+							<tr>
+								<td><a href="{% url 'email_detail_url' email_name="volunteer-survey" %}">Volunteer Survey</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>	
+				<div role="tabpanel" class="tab-pane" id="partner">
+					<table class="table table-striped" width="100%">
+						<tbody>
+							<tr>
+								<td><a href="{% url 'email_test_url' email_name="partner-accept" %}">Test Partner Accept</a></td>
+							</tr>
+							<tr>
+								<td><a href="{% url 'email_test_url' email_name="partner-confirm" %}">Test Partner Confirm</a></td>
+							</tr>
+							<tr>
+								<td><a href="{% url 'email_detail_url' email_name="partner-contact-1" %}">Partner Contact 1</a></td>
+							</tr>
+							<tr>
+								<td><a href="{% url 'email_detail_url' email_name="partner-contact-2" %}">Partner Contact 2</a></td>
+							</tr>
+                            <tr>
+                                <td><a href="{% url 'email_detail_url' email_name="partner-contact-3" %}">Partner Contact 3</a></td>
+                            </tr>
+							<tr>
+								<td><a href="{% url 'email_test_url' email_name="partner-deny" %}">Test Partner Deny</a></td>
+							</tr>
+							<tr>
+								<td><a href="{% url 'email_detail_url' email_name="partner-survey" %}">Partner Partner Survey</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
