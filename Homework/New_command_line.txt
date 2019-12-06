@@ -1,6 +1,0 @@
-condition
-- rosie grep "copy" and following 5-8 words in order to find copy rights
-- set up a condition where if the word has more than 50% matching words, store/print them.
-- perhaps 2-3 lines around the target?
-
-rosie grep -o data '(ci:"copy") [a-z]+' *.js
