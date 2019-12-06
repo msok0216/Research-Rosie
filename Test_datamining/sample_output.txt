@@ -1,0 +1,74 @@
+{"data": " * author mmkim", 
+ "subs": 
+   [{"data": "author mmkim", 
+     "subs": 
+       [{"data": "mmkim", 
+         "s": 11, 
+         "type": "author.author_info", 
+         "e": 16}], 
+     "s": 4, 
+     "type": "author.find.*", 
+     "e": 16}], 
+ "s": 1, 
+ "type": "author.find_author", 
+ "e": 16}
+{"data": " * mkim author", 
+ "subs": 
+   [{"data": "mkim author", 
+     "subs": 
+       [{"data": "mkim", 
+         "s": 4, 
+         "type": "author.author_info", 
+         "e": 8}], 
+     "s": 4, 
+     "type": "author.find.*", 
+     "e": 15}], 
+ "s": 1, 
+ "type": "author.find_author", 
+ "e": 15}
+{"data": " * author - mkim", 
+ "subs": 
+   [{"data": "author - mkim", 
+     "subs": 
+       [{"data": "mkim", 
+         "s": 13, 
+         "type": "author.author_info", 
+         "e": 17}], 
+     "s": 4, 
+     "type": "author.find.*", 
+     "e": 17}], 
+ "s": 1, 
+ "type": "author.find_author", 
+ "e": 17}
+{"data": " * author: mkim", 
+ "subs": 
+   [{"data": "author: mkim", 
+     "subs": 
+       [{"data": "mkim", 
+         "s": 12, 
+         "type": "author.author_info", 
+         "e": 16}], 
+     "s": 4, 
+     "type": "author.find.*", 
+     "e": 16}], 
+ "s": 1, 
+ "type": "author.find_author", 
+ "e": 16}
+{"data": " //author marcy mark", 
+ "subs": 
+   [{"data": "author marcy mark", 
+     "subs": 
+       [{"data": "marcy", 
+         "s": 11, 
+         "type": "author.author_info", 
+         "e": 16}, 
+        {"data": "mark", 
+         "s": 17, 
+         "type": "author.author_info", 
+         "e": 21}], 
+     "s": 4, 
+     "type": "author.find.*", 
+     "e": 21}], 
+ "s": 1, 
+ "type": "author.find_author", 
+ "e": 21}
